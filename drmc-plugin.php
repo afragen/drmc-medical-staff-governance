@@ -16,7 +16,7 @@ require_once( 'drmc-registration.php' );
 
 //http://nathany.com/redirecting-wordpress-subscribers
 function change_login_redirect($redirect_to, $request_redirect_to, $user) {
-  if (is_a($user, 'WP_User') && $user->has_cap('create_users') === false) {
+  if (is_a($user, 'WP_User') && $user->has_cap('add_users') === false) {
     return get_bloginfo('siteurl');
   }
   return $redirect_to;
