@@ -4,7 +4,7 @@
 Plugin Name: DRMC Plugin
 Plugin URI: https://github.com/afragen/drmc-plugin
 Description: This plugin adds registration, custom user meta and other things to the DRMC Medical Staff website.
-Version: 0.2.1
+Version: 0.3
 Author: Andy Fragen
 Author URI: http://drmcmedstaff.org
 License: GNU General Public License v2
@@ -72,6 +72,41 @@ function get_user_meta_field_data( $user_meta_field, $user_meta_field_value=NULL
 	}
 }
 
+/**
+ * Add custom taxonomies
+ *
+ * Additional custom taxonomies can be defined here
+ * http://codex.wordpress.org/Function_Reference/register_taxonomy
+ */
+function add_custom_taxonomies() {
+	// Add new "Departments" taxonomy to Posts
+	register_taxonomy('department', 'post', array(
+		// Hierarchical taxonomy (like categories)
+		'hierarchical' => false,
+		// This array of options controls the labels displayed in the WordPress Admin UI
+		'labels' => array(
+			'name' => _x( 'Departments', 'taxonomy general name' ),
+			'singular_name' => _x( 'Department', 'taxonomy singular name' ),
+			'search_items' =>  __( 'Search Departments' ),
+			'all_items' => __( 'All Departments' ),
+			'parent_item' => __( 'Parent Department' ),
+			'parent_item_colon' => __( 'Parent Department:' ),
+			'edit_item' => __( 'Edit Department' ),
+			'update_item' => __( 'Update Department' ),
+			'add_new_item' => __( 'Add New Department' ),
+			'new_item_name' => __( 'New Department Name' ),
+			'menu_name' => __( 'Departments' ),
+		),
+		'query_var' => true,
+		// Control the slugs used for this taxonomy
+		'rewrite' => array(
+			'slug' => 'departments', // This controls the base slug that will display before each term
+			'with_front' => false, // Don't display the category base before "/locations/"
+			'hierarchical' => true // This will allow URL's like "/locations/boston/cambridge/"
+		),
+	));
+}
+add_action( 'init', 'add_custom_taxonomies', 0 );
 
 
 
