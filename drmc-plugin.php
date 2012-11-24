@@ -4,7 +4,7 @@
 Plugin Name: DRMC Plugin
 Plugin URI: https://github.com/afragen/drmc-plugin
 Description: This plugin adds registration, custom user meta and other things to the DRMC Medical Staff website.
-Version: 0.3
+Version: 0.4
 Author: Andy Fragen
 Author URI: http://drmcmedstaff.org
 License: GNU General Public License v2
@@ -77,10 +77,11 @@ function get_user_meta_field_data( $user_meta_field, $user_meta_field_value=NULL
  *
  * Additional custom taxonomies can be defined here
  * http://codex.wordpress.org/Function_Reference/register_taxonomy
+ * http://wp.smashingmagazine.com/2012/01/04/create-custom-taxonomies-wordpress/
  */
 function add_custom_taxonomies() {
 	// Add new "Departments" taxonomy to Posts
-	register_taxonomy('department', 'post', array(
+	register_taxonomy('department', 'drmc_voting', array(
 		// Hierarchical taxonomy (like categories)
 		'hierarchical' => false,
 		// This array of options controls the labels displayed in the WordPress Admin UI
@@ -108,6 +109,21 @@ function add_custom_taxonomies() {
 }
 add_action( 'init', 'add_custom_taxonomies', 0 );
 
+function create_post_type() {  
+    register_post_type( 'drmc_voting',  
+        array(  
+            'labels' => array(  
+                'name' => __( 'Elections' ),  
+                'singular_name' => __( 'Election' )  
+            ),  
+        'public' => true,  
+        'menu_position' => 5,  
+        'rewrite' => array('slug' => 'elections'),
+        'taxonomies' => array( 'departments' )  
+        )  
+    );  
+}  
+add_action( 'init', 'create_post_type' );  
 
 
 // GithubUpdater
