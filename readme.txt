@@ -54,6 +54,7 @@ Answer to foo bar dilemma.
 = 0.6 =
 * added class DRMCMedStaff
 * added template for Departmental Elections
+* added get emails code to drmc-get-emails.php
 
 == Current Version ==
 
