@@ -39,6 +39,13 @@ class DRMCMedStaff {
 		//return $content;
 	}
 	
+	public function get_department() {
+		global $current_user;
+		get_currentuserinfo();
+		$user_dept = get_user_meta( $current_user->ID, 'drmc-department' );
+		return $user_dept;
+	}
+	
 } //end class DRMCMedStaff
 
 	
