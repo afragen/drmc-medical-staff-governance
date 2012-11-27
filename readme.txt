@@ -3,7 +3,7 @@ Contributors: afragen
 Requires at least: 3.3
 Tested up to: 3.4.1
 Git URI: https://github.com/afragen/drmc-plugin
-Stable tag: 0.4
+Stable tag: 0.5
 
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -47,10 +47,14 @@ Answer to foo bar dilemma.
 = 0.4 =
 * added custom post type for Elections
 
+= 0.5 =
+* added template for Medical Staff Elections, still have to do one for Departmental Elections
+* made all department meta tags same
+
 == Current Version ==
 
 Using https://github.com/jkudish/WordPress-GitHub-Plugin-Updater
 
 The line below is used for the updater API, please leave it untouched unless bumping the version up :)
 
-~Current Version:0.4~
+~Current Version:0.5~

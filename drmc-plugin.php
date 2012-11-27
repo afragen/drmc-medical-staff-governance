@@ -4,7 +4,7 @@
 Plugin Name: DRMC Plugin
 Plugin URI: https://github.com/afragen/drmc-plugin
 Description: This plugin adds registration, custom user meta and other things to the DRMC Medical Staff website.
-Version: 0.4
+Version: 0.5
 Author: Andy Fragen
 Author URI: http://drmcmedstaff.org
 License: GNU General Public License v2
@@ -29,7 +29,7 @@ add_filter('login_redirect','change_login_redirect', 10, 3);
 //add_action( wp_head, 'return_meta', 10, 2 );
 function return_meta() {
 	get_user_meta_field_data( 'drmc-department' );
-	get_user_meta_field_data( 'drmc-department', 'er' );
+	get_user_meta_field_data( 'drmc-department', 'emergency-medicine' );
 }
 
 function get_users_by_meta_data( $meta_key, $meta_value ) {
@@ -98,16 +98,17 @@ function add_custom_taxonomies() {
 			'new_item_name' => __( 'New Department Name' ),
 			'menu_name' => __( 'Departments' ),
 		),
-		'query_var' => true,
+		'query_var' => 'department',
 		// Control the slugs used for this taxonomy
 		'rewrite' => array(
-			'slug' => 'departments', // This controls the base slug that will display before each term
+			'slug' => 'department', // This controls the base slug that will display before each term
 			'with_front' => false, // Don't display the category base before "/locations/"
 			'hierarchical' => true // This will allow URL's like "/locations/boston/cambridge/"
 		),
 	));
 }
 add_action( 'init', 'add_custom_taxonomies', 0 );
+
 
 function create_post_type() {  
     register_post_type( 'drmc_voting',  
@@ -119,7 +120,7 @@ function create_post_type() {
         'public' => true,  
         'menu_position' => 5,  
         'rewrite' => array('slug' => 'elections'),
-        'taxonomies' => array( 'departments' )  
+        'taxonomies' => array( 'department' )  
         )  
     );  
 }  

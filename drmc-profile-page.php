@@ -28,12 +28,12 @@ function wpq_show_extra_profile_fields ( $user ) {
 				<?php $value = get_the_author_meta( 'drmc-department', $user->ID ); ?>
 				<select name="drmc-department" id="drmc-department">
 				<option value="--" <?php selected( $value, '--' ); ?>>--</option>
-				<option value="er" <?php selected( $value, 'er' ); ?>>Emergency Medicine</option>
-				<option value="med" <?php selected( $value, 'med' ); ?>>Medicine</option>
-				<option value="obgyn" <?php selected( $value, 'obgyn' ); ?>>Obstetrics/Gynecology</option>
-				<option value="peds" <?php selected( $value, 'peds' ); ?>>Pediatrics</option>
-				<option value="rad" <?php selected( $value, 'rad' ); ?>>Radiology</option>
-				<option value="surg" <?php selected( $value, 'surg' ); ?>>Surgery</option>
+				<option value="emergency-medicine" <?php selected( $value, 'emergency-medicine' ); ?>>Emergency Medicine</option>
+				<option value="medicine" <?php selected( $value, 'medicine' ); ?>>Medicine</option>
+				<option value="obstetrics-gynecology" <?php selected( $value, 'obstetrics-gynecology' ); ?>>Obstetrics/Gynecology</option>
+				<option value="pediatrics" <?php selected( $value, 'pediatrics' ); ?>>Pediatrics</option>
+				<option value="radiology" <?php selected( $value, 'radiology' ); ?>>Radiology</option>
+				<option value="surgery" <?php selected( $value, 'surgery' ); ?>>Surgery</option>
 				</select>
 			</td>
 		</tr>
