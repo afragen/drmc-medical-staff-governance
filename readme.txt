@@ -3,7 +3,7 @@ Contributors: afragen
 Requires at least: 3.3
 Tested up to: 3.4.1
 Git URI: https://github.com/afragen/drmc-plugin
-Stable tag: 0.6
+Stable tag: 0.7
 
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -55,6 +55,9 @@ Answer to foo bar dilemma.
 * added class DRMCMedStaff
 * added template for Departmental Elections
 * added get emails code to drmc-get-emails.php
+
+= 0.7 =
+* only admin user can change Department affiliation
 
 == Current Version ==
 
