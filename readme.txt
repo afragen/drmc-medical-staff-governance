@@ -3,7 +3,7 @@ Contributors: afragen
 Requires at least: 3.3
 Tested up to: 3.4.1
 Git URI: https://github.com/afragen/drmc-plugin
-Stable tag: 0.7
+Stable tag: 0.8
 
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -58,6 +58,9 @@ Answer to foo bar dilemma.
 
 = 0.7 =
 * only admin user can change Department affiliation
+
+= 0.8 =
+* added custom post types and taxonomy to class DRMCMedStaff
 
 == Current Version ==
 
