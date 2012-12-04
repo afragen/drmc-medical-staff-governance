@@ -3,7 +3,7 @@ Contributors: afragen
 Requires at least: 3.3
 Tested up to: 3.4.1
 Git URI: https://github.com/afragen/drmc-plugin
-Stable tag: 0.8
+Stable tag: 0.9
 
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -21,15 +21,6 @@ This section describes how to install the plugin and get it working.
 1. Upload `drmc-plugin.php` to the `/wp-content/plugins/` directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
-== Frequently Asked Questions ==
-
-= A question that someone might have =
-
-An answer to that question.
-
-= What about foo bar? =
-
-Answer to foo bar dilemma.
 
 
 == Changelog ==
@@ -62,10 +53,16 @@ Answer to foo bar dilemma.
 = 0.8 =
 * added custom post types and taxonomy to class DRMCMedStaff
 
+= 0.9 =
+* bug fixes
+* changed user meta key to drmc_department
+* better OOP to class DRMCMedStaff, profile and registration pages
+* dropdown list now working as class method
+
 == Current Version ==
 
 Using https://github.com/jkudish/WordPress-GitHub-Plugin-Updater
 
 The line below is used for the updater API, please leave it untouched unless bumping the version up :)
 
-~Current Version:0.8~
+~Current Version:0.9~

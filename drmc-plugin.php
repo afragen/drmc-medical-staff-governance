@@ -4,7 +4,7 @@
 Plugin Name: DRMC Plugin
 Plugin URI: https://github.com/afragen/drmc-plugin
 Description: This plugin adds registration, custom user meta and other things to the DRMC Medical Staff website.
-Version: 0.8
+Version: 0.9
 Author: Andy Fragen
 Author URI: http://drmcmedstaff.org
 License: GNU General Public License v2
@@ -13,10 +13,12 @@ License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
 class DRMCMedStaff {
 
-	function __construct() {
+	static $depts;
 	
-		$this->depts = array(
-			'--' => '--',
+	function __construct() {
+			
+		self::$depts = array(
+			'--' => '',
 			'Emergency Medicine' => 'emergency-medicine',
 			'Medicine' => 'medicine',
 			'Pediatrics' => 'pediatrics',
@@ -35,25 +37,26 @@ class DRMCMedStaff {
 
 	}
 	
-	public function make_dropdown() {
-		//still doesn't work :-(
-		
+	static function make_dropdown( $user ) {
+
+		$value = get_user_meta( $user->ID, 'drmc_department' );
+		if ( ! $value) { $value = $_POST['drmc_department']; }
 		$dropdown = array();
-		//$dropdown[] = '<select name="drmc-department" id="drmc-department">';
-		foreach ( $this->depts as $dept => $tax ) {
-			//$dropdown[] = "<option value='$dept' " . selected($value, $tax, false) . ">$dept</option>";
-			$dropdown[] = '<option value="'. $tax . '" <' . '?php selected( $value, "' . $tax . '" ); ?' . '>>' . $dept . '</option>';
+		$dropdown[] = '<select name="drmc_department" id="drmc_department">';
+		foreach ( self::$depts as $dept => $tax ) {
+			$dropdown[] = "<option value='$tax' " . selected($value[0], $tax, false) . ">$dept</option>";
+			//$dropdown[] = '<option value="'. $tax . '" <' . '?php selected( $value, "' . $tax . '" ); ?' . '>>' . $dept . '</option>';
 		}
-		//$dropdown[] = '</select>';
-		$content = implode( '', $dropdown );
+		$dropdown[] = '</select>';
+		$content = implode( "\n", $dropdown );
 		echo $content;
-		return $content;
 	}
+
 	
 	public function get_department() {
 		global $current_user;
 		get_currentuserinfo();
-		$user_dept = get_user_meta( $current_user->ID, 'drmc-department' );
+		$user_dept = get_user_meta( $current_user->ID, 'drmc_department' );
 		return $user_dept;
 	}
 	
