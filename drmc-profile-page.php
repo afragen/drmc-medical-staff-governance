@@ -41,10 +41,10 @@ add_action ( 'personal_options_update', 'wpq_save_extra_profile_fields' );
 add_action ( 'edit_user_profile_update', 'wpq_save_extra_profile_fields' );
 
 function wpq_save_extra_profile_fields( $user_id ) {
-	if ( current_user_can( 'add_users' ) ) {
-		// copy this line for other fields
-		update_user_meta( $user_id, 'drmc_department', $_POST['drmc_department'] );
-	}
+	if ( ! current_user_can( 'add_users' ) ) { return false; }
+		
+	// copy this line for other fields
+	update_user_meta( $user_id, 'drmc_department', $_POST['drmc_department'] );
 }
 
 
