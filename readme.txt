@@ -3,7 +3,7 @@ Contributors: afragen
 Requires at least: 3.3
 Tested up to: 3.4.1
 Git URI: https://github.com/afragen/drmc-plugin
-Stable tag: 0.9.1
+Stable tag: 0.9.2
 
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -21,37 +21,21 @@ This section describes how to install the plugin and get it working.
 1. Upload `drmc-plugin.php` to the `/wp-content/plugins/` directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
+== Current Version ==
 
+Using https://github.com/jkudish/WordPress-GitHub-Plugin-Updater
+
+The line below is used for the updater API, please leave it untouched unless bumping the version up :)
+
+~Current Version:0.9.2~
 
 == Changelog ==
 
-= 0.1 =
-* Initial commit
+= 0.9.2 =
+* fixed whitespace problem
 
-= 0.2 =
-* redirect all but admin role
-* rework get_user_meta_field_data function to take 1 or 2 parameters and return corresponding array
-
-= 0.3 =
-* added custom post taxonomy for Departments
-
-= 0.4 =
-* added custom post type for Elections
-
-= 0.5 =
-* added template for Medical Staff Elections, still have to do one for Departmental Elections
-* made all department meta tags same
-
-= 0.6 =
-* added class DRMCMedStaff
-* added template for Departmental Elections
-* added get emails code to drmc-get-emails.php
-
-= 0.7 =
-* only admin user can change Department affiliation
-
-= 0.8 =
-* added custom post types and taxonomy to class DRMCMedStaff
+= 0.9.1 =
+* bug fixes
 
 = 0.9 =
 * bug fixes
@@ -59,13 +43,31 @@ This section describes how to install the plugin and get it working.
 * better OOP to class DRMCMedStaff, profile and registration pages
 * dropdown list now working as class method
 
-= 0.9.1 =
-* bug fixes
+= 0.8 =
+* added custom post types and taxonomy to class DRMCMedStaff
 
-== Current Version ==
+= 0.7 =
+* only admin user can change Department affiliation
 
-Using https://github.com/jkudish/WordPress-GitHub-Plugin-Updater
+= 0.6 =
+* added class DRMCMedStaff
+* added template for Departmental Elections
+* added get emails code to drmc-get-emails.php
 
-The line below is used for the updater API, please leave it untouched unless bumping the version up :)
+= 0.5 =
+* added template for Medical Staff Elections, still have to do one for Departmental Elections
+* made all department meta tags same
 
-~Current Version:0.9.1~
+= 0.4 =
+* added custom post type for Elections
+
+= 0.3 =
+* added custom post taxonomy for Departments
+
+= 0.2 =
+* redirect all but admin role
+* rework get_user_meta_field_data function to take 1 or 2 parameters and return corresponding array
+
+= 0.1 =
+* Initial commit
+

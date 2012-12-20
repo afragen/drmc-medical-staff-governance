@@ -45,4 +45,3 @@ function drmc_register_extra_fields ( $user_id ) {
 
 
 ?>
-
