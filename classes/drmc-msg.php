@@ -4,6 +4,7 @@
 class DRMCMedStaff {
 
 	static $depts;
+	protected static $object = false;
 	
 	public static function instance() {
 		$class = __CLASS__;
