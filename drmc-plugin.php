@@ -4,12 +4,19 @@
 Plugin Name: DRMC Plugin
 Plugin URI: https://github.com/afragen/drmc-plugin
 Description: This plugin adds registration, custom user meta and other things to the DRMC Medical Staff website.
-Version: 0.9.2
+Version: 0.9.3
 Author: Andy Fragen
 Author URI: http://drmcmedstaff.org
 License: GNU General Public License v2
 License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
+
+// We'll use PHP 5.2 syntax to get the plugin directory
+define('DRMC_DIR', dirname(__FILE__));
+//define('DRMC_CLASSES', DRMC_DIR.'/classes');
+define('DRMC_INCLUDES', DRMC_DIR.'/includes');
+define('DRMC_VIEWS', DRMC_DIR.'/views');
+//define('DRMC_RESOURCES', plugin_dir_url(__FILE__).'resources');
 
 class DRMCMedStaff {
 
@@ -27,9 +34,9 @@ class DRMCMedStaff {
 			'Surgery' => 'surgery'
 			);	
 								
-		require_once( 'drmc-profile-page.php' );
-		require_once( 'drmc-registration.php' );
-		require_once( 'drmc-get-emails.php' );
+		require_once( DRMC_VIEWS.'/drmc-profile-page.php' );
+		require_once( DRMC_VIEWS.'/drmc-registration.php' );
+		require_once( DRMC_INCLUDES.'/drmc-get-emails.php' );
 		
 		add_filter('login_redirect', array( $this, 'change_login_redirect' ), 10, 3);
 		add_action( 'init', array( $this, 'add_custom_taxonomies' ), 0 );
@@ -129,7 +136,7 @@ new DRMCMedStaff();
 // GithubUpdater
 if ( is_admin() ) {
 	global $wp_version;
-	include_once( 'updater.php' );
+	include_once( DRMC_INCLUDES.'/updater.php' );
 	$config = array(		
 		'slug' => plugin_basename(__FILE__),
 		'proper_folder_name' => dirname( plugin_basename(__FILE__) ),

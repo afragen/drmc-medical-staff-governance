@@ -47,5 +47,4 @@ function wpq_save_extra_profile_fields( $user_id ) {
 	update_user_meta( $user_id, 'drmc_department', $_POST['drmc_department'] );
 }
 
-
 ?>

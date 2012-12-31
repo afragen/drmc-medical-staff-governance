@@ -1,6 +1,5 @@
 <?php
 
-
 //Add custom fields to registration page
 add_action( 'register_form', 'drmc_username' );
 add_action( 'register_form', 'drmc_add_dropdown' );
@@ -42,6 +41,5 @@ function drmc_register_extra_fields ( $user_id ) {
 	
 }
 //end add custom fields to registration page
-
 
 ?>
