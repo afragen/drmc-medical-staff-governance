@@ -38,14 +38,12 @@ class DRMCMedStaffAdmin {
 		?>
 			<h3><?php _e( 'Extra Profile Info'); ?></h3>
 			<table class="form-table">
-				<?php // duplicate this chunk (changing the meta field) for more fields ?>
 				<tr>
 					<th><label for="drmc_department" id="drmc_department"><?php _e( 'Department' ); ?></label></th>
 					<td>
-					<?php $drmcmedstaff::make_dropdown( $user ); ?>
+						<?php $drmcmedstaff::make_dropdown( $user ); ?>
 					</td>
 				</tr>
-				<?php // end of chunk ?>
 			</table>
 		<?php
 	}
