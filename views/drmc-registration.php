@@ -17,7 +17,7 @@ function drmc_username() {
 }
 
 function drmc_add_dropdown( $user ) {
-	$drmcmedstaff = new DRMCMedStaff();
+	$drmcmedstaff = DRMCMedStaff::instance();
 	$drmcmedstaff::make_dropdown( $user );
 }
 
