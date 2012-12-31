@@ -4,6 +4,8 @@
 Plugin Name: DRMC Plugin
 Plugin URI: https://github.com/afragen/drmc-plugin
 Description: This plugin adds registration, custom user meta and other things to the DRMC Medical Staff website.
+Requires at least: 3.1
+Tested up to: 3.5
 Version: 0.9.5
 Author: Andy Fragen
 Author URI: http://drmcmedstaff.org
