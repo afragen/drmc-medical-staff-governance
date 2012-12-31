@@ -30,7 +30,7 @@ class DRMCMedStaff {
 		
 		is_admin() ? $this->load_admin() : $this->load_public() ;
 		
-		require_once( DRMC_INCLUDES.'/drmc-get-emails.php' );
+		//require_once( DRMC_INCLUDES.'/drmc-get-emails.php' );
 
 	}
 	
