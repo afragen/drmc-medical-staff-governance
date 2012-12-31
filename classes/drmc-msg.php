@@ -24,16 +24,26 @@ class DRMCMedStaff {
 			'Surgery' => 'surgery'
 			);	
 								
-		require_once( DRMC_VIEWS.'/drmc-profile-page.php' );
-		require_once( DRMC_VIEWS.'/drmc-registration.php' );
-		require_once( DRMC_INCLUDES.'/drmc-get-emails.php' );
-		
 		add_filter('login_redirect', array( $this, 'change_login_redirect' ), 10, 3);
 		add_action( 'init', array( $this, 'add_custom_taxonomies' ), 0 );
-		add_action( 'init', array( $this, 'create_post_type' ) );  
+		add_action( 'init', array( $this, 'create_post_type' ) );
+		
+		is_admin() ? $this->load_admin() : $this->load_public() ;
+		
+		require_once( DRMC_INCLUDES.'/drmc-get-emails.php' );
 
 	}
 	
+	protected function load_admin() {
+		require_once DRMC_CLASSES.'/admin.php';
+		new DRMCMedStaffAdmin($this);
+	}
+
+	protected function load_public() {
+		require_once DRMC_CLASSES.'/public.php';
+		new DRMCMedStaffPublic($this);
+	}
+
 	static function make_dropdown( $user ) {
 
 		$value = get_user_meta( $user->ID, 'drmc_department' );

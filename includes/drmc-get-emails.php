@@ -45,6 +45,3 @@ function get_user_meta_field_data( $user_meta_field, $user_meta_field_value=NULL
 		return $emails;
 	}
 }
-
-
-?>
