@@ -1,9 +1,9 @@
 <?php
 
 /*
-Plugin Name: DRMC Plugin
-Plugin URI: https://github.com/afragen/drmc-plugin
-Description: This plugin adds registration, custom user meta and other things to the DRMC Medical Staff website.
+Plugin Name: DRMC Medical Staff Governance
+Plugin URI: https://github.com/afragen/drmc-medical-staff-governance
+Description: This plugin adds registration, custom user meta and other things to the DRMC Medical Staff website for web-based governance.
 Requires at least: 3.1
 Tested up to: 3.5
 Version: 0.9.7
@@ -17,7 +17,7 @@ License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 define('DRMC_DIR', dirname(__FILE__));
 define('DRMC_CLASSES', DRMC_DIR.'/classes');
 define('DRMC_INCLUDES', DRMC_DIR.'/includes');
-define('DRMC_VIEWS', DRMC_DIR.'/views');
+//define('DRMC_VIEWS', DRMC_DIR.'/views');
 //define('DRMC_RESOURCES', plugin_dir_url(__FILE__).'resources');
 
 //Load base class
@@ -34,10 +34,10 @@ if ( is_admin() ) {
 	$config = array(		
 		'slug' => plugin_basename(__FILE__),
 		'proper_folder_name' => dirname( plugin_basename(__FILE__) ),
-		'api_url' => 'https://api.github.com/repos/afragen/drmc-plugin',
-		'raw_url' => 'https://raw.github.com/afragen/drmc-plugin/master',
-		'github_url' => 'https://github.com/afragen/drmc-plugin',
-		'zip_url' => 'https://github.com/afragen/drmc-plugin/zipball/master',
+		'api_url' => 'https://api.github.com/repos/afragen/drmc-medical-staff-governance',
+		'raw_url' => 'https://raw.github.com/afragen/drmc-medical-staff-governance/master',
+		'github_url' => 'https://github.com/afragen/drmc-medical-staff-governance',
+		'zip_url' => 'https://github.com/afragen/drmc-medical-staff-governance/zipball/master',
 		'sslverify' => true,
 		'requires' => $wp_version,
 		'tested' => $wp_version,

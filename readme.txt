@@ -1,8 +1,8 @@
-=== Plugin Name ===
+=== DRMC Medical Staff Governance ===
 Contributors: afragen
 Requires at least: 3.3
 Tested up to: 3.4.1
-Git URI: https://github.com/afragen/drmc-plugin
+Git URI: https://github.com/afragen/drmc-medical-staff-governance
 Stable tag: 0.9.7
 ~Current Version:0.9.7~
 
@@ -13,13 +13,13 @@ Adding registration and custom user meta to site.
 
 == Description ==
 
-This plugin adds registration, custom user meta, role and custom user meta specific menu options and other things for Medical Staff governance to the [DRMC Medical Staff website](http://drmcmedstaff.org).
+This plugin adds registration, custom user meta, role and custom user meta specific menu options and other things for Medical Staff governance to the [DRMC Medical Staff website](http://drmcmedstaff.org). Combined with other plugins, listed below, and a theme containing 2 additional page templates; the website is capable of providing web-based voting for all Medical Staff and Departmental functions.
 
 == Installation ==
 
 This section describes how to install the plugin and get it working.
 
-1. Upload `drmc-plugin.php` to the `/wp-content/plugins/` directory
+1. Upload `drmc-medical-staff-governance` to the `/wp-content/plugins/` directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Frequently Asked Questions ==
@@ -38,6 +38,7 @@ This plugin requires several other plugins to achieve full functionality for the
 
 = 0.9.7 =
 * code cleanup
+* rename to DMRC Medical Staff Governance
 
 = 0.9.6 =
 * refactored classes
