@@ -1,11 +1,15 @@
 <?php
 
-add_filter( 'user_contactmethods', 'remove_contactmethods');
+add_filter( 'user_contactmethods', 'remove_contactmethods', 100);
 function remove_contactmethods($user_contactmethods) {
 	// You can get rid of ones you don't want
 	unset($user_contactmethods['jabber']);
 	unset($user_contactmethods['yim']);
 	unset($user_contactmethods['aim']);
+	
+	//Added by WordPress SEO
+	unset($user_contactmethods['googleplus']);
+	unset($user_contactmethods['twitter']);
 
 	return $user_contactmethods;
 }
@@ -18,7 +22,7 @@ add_action ( 'edit_user_profile', 'wpq_show_extra_profile_fields' );
 
 function wpq_show_extra_profile_fields ( $user ) {
 
-	$drmcmedstaff = new DRMCMedStaff();
+	$drmcmedstaff = DRMCMedStaff::instance();
 
 	?>
 		<h3><?php _e( 'Extra Profile Info'); ?></h3>
