@@ -3,8 +3,8 @@ Contributors: afragen
 Requires at least: 3.3
 Tested up to: 3.4.1
 Git URI: https://github.com/afragen/drmc-medical-staff-governance
-Stable tag: 0.9.9
-~Current Version:0.9.9~
+Stable tag: 1.0
+~Current Version:1.0~
 
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -35,6 +35,9 @@ This plugin requires several other plugins to achieve full functionality for the
 
 
 == Changelog ==
+
+= 1.0 =
+* refactored GithubUpdater code to own directory
 
 = 0.9.9 =
 * updated to new GithubUpdater code
