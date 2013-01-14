@@ -29,7 +29,6 @@ class DRMCMedStaff {
 		add_action( 'init', array( $this, 'create_post_type' ) );
 		
 		is_admin() ? $this->load_admin() : $this->load_public() ;
-
 	}
 	
 	protected function load_admin() {
