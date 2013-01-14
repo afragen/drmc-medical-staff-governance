@@ -22,6 +22,7 @@ define('DRMC_INCLUDES', DRMC_DIR.'/includes');
 
 //Load base class
 require_once( DRMC_CLASSES.'/drmc-msg.php' );
+//require_once( DRMC_INCLUDES.'/drmc-get-emails.php' );
 
 // Launch
 DRMCMedStaff::instance();

@@ -1,9 +1,9 @@
 <?php
 
-//add_action( wp_head, 'return_meta', 10, 2 );
+add_action( admin_head, 'return_meta', 10, 2 );
 function return_meta() {
-	get_user_meta_field_data( 'drmc-department' );
-	get_user_meta_field_data( 'drmc-department', 'emergency-medicine' );
+	get_user_meta_field_data( 'drmc_department' );
+	get_user_meta_field_data( 'drmc_department', 'emergency-medicine' );
 }
 
 function get_users_by_meta_data( $meta_key, $meta_value ) {
@@ -21,7 +21,7 @@ function get_user_meta_field_data( $user_meta_field, $user_meta_field_value=NULL
 	$user_meta_field_values = array();
 	foreach ( get_users_by_meta_data( $user_meta_field, $user_meta_field_value ) as $user ) {
 		$meta_field_values[] = get_user_meta( $user->ID, $user_meta_field );
-		
+
 		//get emails for specified custom user meta field value
 		if ( ! is_null( $user_meta_field_value ) ) {
 			$emails[] =  $user->user_email;
@@ -35,6 +35,9 @@ function get_user_meta_field_data( $user_meta_field, $user_meta_field_value=NULL
 				$user_meta_field_values[] = $meta_field_value[0];
 			}
 		}
+		rsort($user_meta_field_values);
+		$user_meta_field_values = array_filter($user_meta_field_values);
+		sort($user_meta_field_values);
 		print_r ( $user_meta_field_values );
 		return $user_meta_field_values;
 	}
