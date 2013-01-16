@@ -30,6 +30,7 @@ class DRMCMedStaffPublic {
 	}
 
 	public function drmc_register_extra_fields ( $user_id ) {
+		global $wpdb;
 		update_user_meta( $user_id, 'drmc_department', $_POST['drmc_department'] );
 		update_user_meta( $user_id, 'first_name', $_POST['first_name'] );
 		update_user_meta( $user_id, 'last_name', $_POST['last_name'] );
