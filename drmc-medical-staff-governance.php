@@ -17,7 +17,7 @@ License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 define('DRMC_DIR', dirname(__FILE__));
 define('DRMC_CLASSES', DRMC_DIR.'/classes');
 define('DRMC_INCLUDES', DRMC_DIR.'/includes');
-//define('DRMC_TEMPLATES', DMRC_DIR.'/templates');
+define('DRMC_TEMPLATES', DMRC_DIR.'/templates');
 //define('DRMC_VIEWS', DRMC_DIR.'/views');
 //define('DRMC_RESOURCES', plugin_dir_url(__FILE__).'resources');
 
