@@ -108,19 +108,20 @@ class DRMCMedStaff {
 		));
 	}
 	
-	public function create_post_type() {  
-	    register_post_type( 'drmc_voting',  
-	        array(  
-	            'labels' => array(  
-	                'name' => __( 'Elections' ),  
-	                'singular_name' => __( 'Election' )  
-	            ),  
-	        'public' => true,  
-	        'menu_position' => 5,  
-	        'rewrite' => array('slug' => 'elections'),
-	        'taxonomies' => array( 'department' )  
-	        )  
-	    );  
-	} 
-	 
+	public function create_post_type() {
+		register_post_type( 'drmc_voting',
+			array(
+				'labels' => array(  
+					'name' => __( 'Elections' ),  
+					'singular_name' => __( 'Election' )
+				),
+			'public' => true,
+			'menu_position' => 5,
+			'rewrite' => array('slug' => 'elections'),
+			'taxonomies' => array( 'department' ),
+			'supports' => array('title', 'editor', 'comments', 'post-formats') 
+			)
+		);
+	}
+	
 } //end class DRMCMedStaff
