@@ -12,7 +12,7 @@ class DRMCMedStaff {
 		return self::$object;
 	}
 	
-	function __construct() {
+	public function __construct() {
 			
 		self::$depts = array(
 			'--' => '',

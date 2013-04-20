@@ -3,8 +3,7 @@ Contributors: afragen
 Requires at least: 3.3
 Tested up to: 3.4.1
 Git URI: https://github.com/afragen/drmc-medical-staff-governance
-Stable tag: 1.0
-~Current Version:1.0~
+Version: 1.0.1
 
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -35,6 +34,10 @@ This plugin requires several other plugins to achieve full functionality for the
 
 
 == Changelog ==
+
+= 1.0.1 =
+* added delete user code for hook to `new_user_approve_user_denied`
+* change to Github Plugin Updater code
 
 = 1.0 =
 * refactored GithubUpdater code to own directory

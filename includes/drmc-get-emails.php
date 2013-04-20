@@ -24,7 +24,7 @@ function get_user_meta_field_data( $user_meta_field, $user_meta_field_value=NULL
 
 		//get emails for specified custom user meta field value
 		if ( ! is_null( $user_meta_field_value ) ) {
-			$emails[] =  $user->user_email;
+			$emails[$user->display_name] =  $user->user_email;
 		}
 	}
 	

@@ -2,7 +2,7 @@
 
 class DRMCMedStaffPublic {
 
-	function __construct() {
+	public function __construct() {
 		//Add custom fields to registration page
 		add_action( 'register_form', array($this, 'drmc_username') );
 		add_action( 'register_form', array($this, 'drmc_add_dropdown') );

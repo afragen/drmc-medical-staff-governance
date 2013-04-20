@@ -4,7 +4,7 @@ add_filter( 'user_contactmethods', 'DRMCMedStaffAdmin::remove_contactmethods', 1
 
 class DRMCMedStaffAdmin {
 
-	function __construct() {
+	public function __construct() {
 		
 		// Add additional custom fields to profile page
 		// http://pastebin.com/0zhWAtqY
@@ -15,7 +15,8 @@ class DRMCMedStaffAdmin {
 
 		add_action ( 'personal_options_update', array($this, 'wpq_save_extra_profile_fields') );
 		add_action ( 'edit_user_profile_update', array($this, 'wpq_save_extra_profile_fields') );
-	}
+		add_action( 'new_user_approve_user_denied', array($this, 'drmc_delete_user') );
+}
 	
 	
 	public function remove_contactmethods($user_contactmethods) {
@@ -32,7 +33,7 @@ class DRMCMedStaffAdmin {
 	}
 
 
-	function wpq_show_extra_profile_fields ( $user ) {
+	public function wpq_show_extra_profile_fields ( $user ) {
 		$drmcmedstaff = DRMCMedStaff::instance();
 
 		?>
@@ -49,11 +50,18 @@ class DRMCMedStaffAdmin {
 	}
 
 
-	function wpq_save_extra_profile_fields( $user_id ) {
+	public function wpq_save_extra_profile_fields( $user_id ) {
 		if ( ! current_user_can( 'add_users' ) ) { return false; }
 		
 		// copy this line for other fields
 		update_user_meta( $user_id, 'drmc_department', $_POST['drmc_department'] );
 	}
+	
+	public function drmc_delete_user ( $user ) {
+		global $wpdb;
+		require_once( ABSPATH . '/wp-admin/includes/user.php');
+		wp_delete_user( $user->ID );
+	}
+
 
 }
