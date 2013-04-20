@@ -6,7 +6,7 @@ Plugin URI: https://github.com/afragen/drmc-medical-staff-governance
 Description: This plugin adds registration, custom user meta and other things to the DRMC Medical Staff website for web-based governance.
 Requires at least: 3.1
 Tested up to: 3.5
-Version: 1.0
+Version: 1.0.1
 Author: Andy Fragen
 Author URI: http://drmcmedstaff.org
 License: GNU General Public License v2
@@ -27,23 +27,18 @@ require_once( DRMC_CLASSES.'/drmc-msg.php' );
 // Launch
 DRMCMedStaff::instance();
 
-//Load GithubUpdater
-if ( is_admin() ) {
-	$repo = 'afragen/drmc-medical-staff-governance';
-	global $wp_version;
-	include_once( dirname(__FILE__).'/updater/updater.php' );
-		$config = array(
-			'slug' => plugin_basename( __FILE__ ),
-			'proper_folder_name' => basename($repo),
-			'api_url' => 'https://api.github.com/repos/'.$repo,
-			'raw_url' => 'https://raw.github.com/'.$repo.'/master',
-			'github_url' => 'https://github.com/'.$repo,
-			'zip_url' => 'https://github.com/'.$repo.'/zipball/master',
-			'sslverify' => true,
-			'requires' => '3.0',
-			'tested' => '3.3',
-			'readme' => 'readme.txt',
-			'access_token' => '',
-		);
-	new WP_GitHub_Updater($config);
+//Load Github Plugin Updater code
+if ( is_admin() )
+	add_action( 'plugins_loaded', 'my_github_plugin_updater' );
+	
+function my_github_plugin_updater() {
+
+	if ( ! function_exists( 'github_plugin_updater_register' ) )
+		return false;
+
+	github_plugin_updater_register( array(
+		'owner'	=> 'afragen',
+		'repo'	=> 'drmc-medical-staff-governance',
+		'slug'	=> 'drmc-medical-staff-governance/drmc-medical-staff-governance.php', // defaults to the repo value ('repo/repo.php')
+	) );
 }
