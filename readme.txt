@@ -1,7 +1,7 @@
 === DRMC Medical Staff Governance ===
 Contributors: afragen
 Requires at least: 3.3
-Tested up to: 3.4.1
+Tested up to: 3.5.1
 Git URI: https://github.com/afragen/drmc-medical-staff-governance
 Version: 1.0.1
 

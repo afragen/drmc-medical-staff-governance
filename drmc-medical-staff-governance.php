@@ -29,9 +29,9 @@ DRMCMedStaff::instance();
 
 //Load Github Plugin Updater code
 if ( is_admin() )
-	add_action( 'plugins_loaded', 'my_github_plugin_updater' );
+	add_action( 'plugins_loaded', 'drmc_github_plugin_updater' );
 	
-function my_github_plugin_updater() {
+function drmc_github_plugin_updater() {
 
 	if ( ! function_exists( 'github_plugin_updater_register' ) )
 		return false;
