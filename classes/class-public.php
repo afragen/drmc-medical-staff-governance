@@ -1,6 +1,6 @@
 <?php
 
-class DRMCMedStaffPublic {
+class DRMC_Med_Staff_Public {
 
 	public function __construct() {
 		//Add custom fields to registration page
@@ -21,8 +21,8 @@ class DRMCMedStaffPublic {
 	}
 
 	public function drmc_add_dropdown( $user ) {
-		$drmcmedstaff = DRMCMedStaff::instance();
-		$drmcmedstaff::make_dropdown( $user );
+		$DRMC_Med_Staff = DRMC_Med_Staff::instance();
+		$DRMC_Med_Staff::make_dropdown( $user );
 	}
 
 	public function drmc_add_warning() {
@@ -36,4 +36,4 @@ class DRMCMedStaffPublic {
 		update_user_meta( $user_id, 'last_name', $_POST['last_name'] );
 	}
 	
-} //end class DRMCMedStaffPublic
+} //end class DRMC_Med_Staff_Public

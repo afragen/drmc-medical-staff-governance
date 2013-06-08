@@ -1,7 +1,7 @@
 <?php
 
 //DRMC Medical Staff Governance
-class DRMCMedStaff {
+class DRMC_Med_Staff {
 
 	static $depts;
 	protected static $object = false;
@@ -32,13 +32,13 @@ class DRMCMedStaff {
 	}
 	
 	protected function load_admin() {
-		require_once DRMC_CLASSES.'/admin.php';
-		new DRMCMedStaffAdmin($this);
+		require_once DRMC_CLASSES.'/class-admin.php';
+		new DRMC_Med_Staff_Admin($this);
 	}
 
 	protected function load_public() {
-		require_once DRMC_CLASSES.'/public.php';
-		new DRMCMedStaffPublic($this);
+		require_once DRMC_CLASSES.'/class-public.php';
+		new DRMC_Med_Staff_Public($this);
 	}
 
 	static function make_dropdown( $user ) {
@@ -124,4 +124,4 @@ class DRMCMedStaff {
 		);
 	}
 	
-} //end class DRMCMedStaff
+} //end class DRMC_Med_Staff

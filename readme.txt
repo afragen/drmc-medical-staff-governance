@@ -3,7 +3,7 @@ Contributors: afragen
 Requires at least: 3.3
 Tested up to: 3.5.1
 Git URI: https://github.com/afragen/drmc-medical-staff-governance
-Version: 1.0.1
+Version: 1.1
 
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -34,6 +34,9 @@ This plugin requires several other plugins to achieve full functionality for the
 
 
 == Changelog ==
+
+= 1.1 =
+* updated for WordPress Code Standards for naming
 
 = 1.0.1 =
 * added delete user code for hook to `new_user_approve_user_denied`
@@ -75,17 +78,17 @@ This plugin requires several other plugins to achieve full functionality for the
 = 0.9 =
 * bug fixes
 * changed user meta key to drmc_department
-* better OOP to class DRMCMedStaff, profile and registration pages
+* better OOP to class DRMC_Med_Staff, profile and registration pages
 * dropdown list now working as class method
 
 = 0.8 =
-* added custom post types and taxonomy to class DRMCMedStaff
+* added custom post types and taxonomy to class DRMC_Med_Staff
 
 = 0.7 =
 * only admin user can change Department affiliation
 
 = 0.6 =
-* added class DRMCMedStaff
+* added class DRMC_Med_Staff
 * added template for Departmental Elections
 * added get emails code to drmc-get-emails.php
 

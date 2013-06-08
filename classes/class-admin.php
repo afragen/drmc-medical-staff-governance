@@ -1,8 +1,8 @@
 <?php
 
-add_filter( 'user_contactmethods', 'DRMCMedStaffAdmin::remove_contactmethods', 100 );
+add_filter( 'user_contactmethods', 'DRMC_Med_Staff_Admin::remove_contactmethods', 100 );
 
-class DRMCMedStaffAdmin {
+class DRMC_Med_Staff_Admin {
 
 	public function __construct() {
 		
@@ -34,7 +34,7 @@ class DRMCMedStaffAdmin {
 
 
 	public function wpq_show_extra_profile_fields ( $user ) {
-		$drmcmedstaff = DRMCMedStaff::instance();
+		$DRMC_Med_Staff = DRMC_Med_Staff::instance();
 
 		?>
 			<h3><?php _e( 'Extra Profile Info'); ?></h3>
@@ -42,7 +42,7 @@ class DRMCMedStaffAdmin {
 				<tr>
 					<th><label for="drmc_department" id="drmc_department"><?php _e( 'Department' ); ?></label></th>
 					<td>
-						<?php $drmcmedstaff::make_dropdown( $user ); ?>
+						<?php $DRMC_Med_Staff::make_dropdown( $user ); ?>
 					</td>
 				</tr>
 			</table>
