@@ -21,8 +21,8 @@ class DRMC_Med_Staff_Public {
 	}
 
 	public function drmc_add_dropdown( $user ) {
-		$DRMC_Med_Staff = DRMC_Med_Staff::instance();
-		$DRMC_Med_Staff::make_dropdown( $user );
+		$drmcmedstaff = DRMC_Med_Staff::instance();
+		$drmcmedstaff::make_dropdown( $user );
 	}
 
 	public function drmc_add_warning() {

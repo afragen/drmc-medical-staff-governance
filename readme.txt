@@ -3,7 +3,7 @@ Contributors: afragen
 Requires at least: 3.3
 Tested up to: 3.5.1
 Git URI: https://github.com/afragen/drmc-medical-staff-governance
-Version: 1.1
+Version: 1.1.1
 
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -34,6 +34,9 @@ This plugin requires several other plugins to achieve full functionality for the
 
 
 == Changelog ==
+
+= 1.1.1 =
+* minor fix from v1.1
 
 = 1.1 =
 * updated for WordPress Code Standards for naming

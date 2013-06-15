@@ -34,7 +34,7 @@ class DRMC_Med_Staff_Admin {
 
 
 	public function wpq_show_extra_profile_fields ( $user ) {
-		$DRMC_Med_Staff = DRMC_Med_Staff::instance();
+		$drmcmedstaff = DRMC_Med_Staff::instance();
 
 		?>
 			<h3><?php _e( 'Extra Profile Info'); ?></h3>
@@ -42,7 +42,7 @@ class DRMC_Med_Staff_Admin {
 				<tr>
 					<th><label for="drmc_department" id="drmc_department"><?php _e( 'Department' ); ?></label></th>
 					<td>
-						<?php $DRMC_Med_Staff::make_dropdown( $user ); ?>
+						<?php $drmcmedstaff::make_dropdown( $user ); ?>
 					</td>
 				</tr>
 			</table>
