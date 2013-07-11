@@ -1,6 +1,9 @@
 <?php
 
 add_filter( 'user_contactmethods', 'DRMC_Med_Staff_Admin::remove_contactmethods', 100 );
+//add columns to User panel list page
+add_action( 'manage_users_custom_column', 'DRMC_Med_Staff_Admin::add_custom_user_columns', 15, 3 );
+add_filter( 'manage_users_columns', 'DRMC_Med_Staff_Admin::add_user_columns', 15, 1 );
 
 class DRMC_Med_Staff_Admin {
 
@@ -12,13 +15,12 @@ class DRMC_Med_Staff_Admin {
 		add_action ( 'edit_user_profile', array($this, 'wpq_show_extra_profile_fields') );
 
 		// Save data input from custom field on profile page
+		add_action( 'personal_options_update', array($this, 'wpq_save_extra_profile_fields') );
+		add_action( 'edit_user_profile_update', array($this, 'wpq_save_extra_profile_fields') );
 
-		add_action ( 'personal_options_update', array($this, 'wpq_save_extra_profile_fields') );
-		add_action ( 'edit_user_profile_update', array($this, 'wpq_save_extra_profile_fields') );
-		add_action( 'new_user_approve_user_denied', array($this, 'drmc_delete_user') );
 }
-	
-	
+
+
 	public function remove_contactmethods($user_contactmethods) {
 		// You can get rid of ones you don't want
 		unset($user_contactmethods['jabber']);
@@ -56,12 +58,16 @@ class DRMC_Med_Staff_Admin {
 		// copy this line for other fields
 		update_user_meta( $user_id, 'drmc_department', $_POST['drmc_department'] );
 	}
-	
-	public function drmc_delete_user ( $user ) {
-		global $wpdb;
-		require_once( ABSPATH . '/wp-admin/includes/user.php');
-		wp_delete_user( $user->ID );
+
+	//http://wordpress.org/support/topic/make-extra-columns-in-userphp-sortable?replies=17#post-2317114
+	public function add_user_columns( $defaults ) {
+		$defaults['drmc_department'] = 'Department';
+		return $defaults;
 	}
 
+	public function add_custom_user_columns($value, $column_name, $id) {
+		if( $column_name == 'drmc_department' )
+			return get_the_author_meta( 'drmc_department', $id );
+	}
 
 }
