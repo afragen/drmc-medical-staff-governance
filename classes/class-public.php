@@ -7,7 +7,8 @@ class DRMC_Med_Staff_Public {
 		add_action( 'register_form', array($this, 'drmc_username') );
 		add_action( 'register_form', array($this, 'drmc_add_dropdown') );
 		add_action( 'register_form', array($this, 'drmc_add_warning') );
-		add_action( 'user_register', array($this, 'drmc_register_extra_fields', 10) );
+		//add_filter( 'registration_errors', array($this, 'drmc_registration_errors') );
+		add_action( 'user_register', array($this, 'drmc_register_extra_fields') );
 	}
 
 	public function drmc_username() {
@@ -30,10 +31,31 @@ class DRMC_Med_Staff_Public {
 	}
 
 	public function drmc_register_extra_fields ( $user_id ) {
-		global $wpdb;
-		update_user_meta( $user_id, 'drmc_department', $_POST['drmc_department'] );
-		update_user_meta( $user_id, 'first_name', $_POST['first_name'] );
-		update_user_meta( $user_id, 'last_name', $_POST['last_name'] );
+		if( isset( $_POST['drmc_department'] ) )
+			update_user_meta( $user_id, 'drmc_department', $_POST['drmc_department'] );
+		if( isset( $_POST['first_name'] ) )
+			update_user_meta( $user_id, 'first_name', $this->ucname( $_POST['first_name'] ) );
+		if( isset( $_POST['last_name'] ) )
+			update_user_meta( $user_id, 'last_name', $this->ucname( $_POST['last_name'] ) );
+	}
+	
+	private function ucname( $string ) {
+		$string =ucwords( strtolower( $string ) );
+		foreach( array( '-', '\'' ) as $delimiter) {
+			if( strpos( $string, $delimiter ) !== false )
+				$string = implode( $delimiter, array_map( 'ucfirst', explode( $delimiter, $string ) ) );
+		}
+		return $string;
+	}
+	
+	public function drmc_registration_errors( $errors, $sanitized_user_login, $user_email ) {
+		if( empty( $_POST['first_name'] ) )
+            $errors->add( 'first_name_error', '<strong>ERROR</strong>: You must include a first name.' );
+		if( empty( $_POST['last_name'] ) )
+            $errors->add( 'last_name_error', '<strong>ERROR</strong>: You must include a last name.' );
+		if( empty( $_POST['drmc_department'] ) )
+            $errors->add( 'drmc_department_error', '<strong>ERROR</strong>: You must include a department.' );
+		return $errors;
 	}
 	
 } //end class DRMC_Med_Staff_Public
