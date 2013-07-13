@@ -7,7 +7,7 @@ class DRMC_Med_Staff_Public {
 		add_action( 'register_form', array($this, 'drmc_username') );
 		add_action( 'register_form', array($this, 'drmc_add_dropdown') );
 		add_action( 'register_form', array($this, 'drmc_add_warning') );
-		add_filter( 'registration_errors', array($this, 'drmc_registration_errors'), 10, 3 );
+		add_action( 'register_post', array($this, 'drmc_registration_errors'), 10, 3 );
 		add_action( 'user_register', array($this, 'drmc_register_extra_fields') );
 	}
 
@@ -48,7 +48,7 @@ class DRMC_Med_Staff_Public {
 		return $string;
 	}
 	
-	public function drmc_registration_errors( $errors, $sanitized_user_login, $user_email ) {
+	public function drmc_registration_errors( $sanitized_user_login, $user_email, $errors  ) {
 		if( empty( $_POST['first_name'] ) )
             $errors->add( 'first_name_error', '<strong>ERROR</strong>: You must include a first name.' );
 		if( empty( $_POST['last_name'] ) )
