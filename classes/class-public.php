@@ -7,7 +7,7 @@ class DRMC_Med_Staff_Public {
 		add_action( 'register_form', array($this, 'drmc_username') );
 		add_action( 'register_form', array($this, 'drmc_add_dropdown') );
 		add_action( 'register_form', array($this, 'drmc_add_warning') );
-		//add_filter( 'registration_errors', array($this, 'drmc_registration_errors') );
+		add_filter( 'registration_errors', array($this, 'drmc_registration_errors'), 10, 3 );
 		add_action( 'user_register', array($this, 'drmc_register_extra_fields') );
 	}
 
