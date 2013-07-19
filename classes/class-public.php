@@ -31,12 +31,16 @@ class DRMC_Med_Staff_Public {
 	}
 
 	public function drmc_register_extra_fields ( $user_id ) {
-		if( isset( $_POST['drmc_department'] ) )
-			update_user_meta( $user_id, 'drmc_department', $_POST['drmc_department'] );
-		if( isset( $_POST['first_name'] ) )
-			update_user_meta( $user_id, 'first_name', $this->ucname( $_POST['first_name'] ) );
-		if( isset( $_POST['last_name'] ) )
-			update_user_meta( $user_id, 'last_name', $this->ucname( $_POST['last_name'] ) );
+		$fname = $this->ucname( $_POST['first_name'] );
+		$lname = $this->ucname( $_POST['last_name'] );
+		update_user_meta( $user_id, 'drmc_department', $_POST['drmc_department'] );
+		update_user_meta( $user_id, 'first_name', $fname );
+		update_user_meta( $user_id, 'last_name', $lname );
+		wp_update_user( array(
+								ID             => $user_id,
+								'display_name' => $fname . ' ' . $lname
+							)
+						);
 	}
 	
 	private function ucname( $string ) {

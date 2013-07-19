@@ -3,8 +3,7 @@ Contributors: afragen
 Requires at least: 3.3
 Tested up to: 3.5.1
 GitHub URI: https://github.com/afragen/drmc-medical-staff-governance
-Version: 1.4
-
+Version: 1.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -34,6 +33,10 @@ This plugin requires several other plugins to achieve full functionality for the
 
 
 == Changelog ==
+
+= 1.5 =
+* removed extra checks from drmc_register_extra_fields
+* set display_name
 
 = 1.4 =
 * finally got registration validation working correctly
