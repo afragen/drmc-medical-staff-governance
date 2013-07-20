@@ -53,6 +53,8 @@ class DRMC_Med_Staff_Public {
 	}
 	
 	public function drmc_registration_errors( $sanitized_user_login, $user_email, $errors  ) {
+		if( preg_match( '/[^-\.\w]/', $sanitized_user_login) )
+			$errors->add( 'user_name', '<strong>ERROR</strong>: Your username contained one or more invalid characters. Please use your DRMC username.' );
 		if( empty( $_POST['first_name'] ) )
             $errors->add( 'first_name_error', '<strong>ERROR</strong>: You must include a first name.' );
 		if( empty( $_POST['last_name'] ) )
