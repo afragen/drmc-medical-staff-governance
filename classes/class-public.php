@@ -56,11 +56,11 @@ class DRMC_Med_Staff_Public {
 		if( preg_match( '/[^-\.\w]/', $sanitized_user_login) )
 			$errors->add( 'user_name', '<strong>ERROR</strong>: Your username contains one or more invalid characters. Please use your DRMC username.' );
 		if( empty( $_POST['first_name'] ) )
-            $errors->add( 'first_name_error', '<strong>ERROR</strong>: You must include a first name.' );
+			$errors->add( 'first_name_error', '<strong>ERROR</strong>: You must include a first name.' );
 		if( empty( $_POST['last_name'] ) )
-            $errors->add( 'last_name_error', '<strong>ERROR</strong>: You must include a last name.' );
+			$errors->add( 'last_name_error', '<strong>ERROR</strong>: You must include a last name.' );
 		if( empty( $_POST['drmc_department'] ) )
-            $errors->add( 'drmc_department_error', '<strong>ERROR</strong>: You must include a department.' );
+			$errors->add( 'drmc_department_error', '<strong>ERROR</strong>: You must include a department.' );
 		return $errors;
 	}
 	

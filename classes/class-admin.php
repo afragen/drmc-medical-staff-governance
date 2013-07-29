@@ -17,6 +17,8 @@ class DRMC_Med_Staff_Admin {
 		// Save data input from custom field on profile page
 		add_action( 'personal_options_update', array($this, 'wpq_save_extra_profile_fields') );
 		add_action( 'edit_user_profile_update', array($this, 'wpq_save_extra_profile_fields') );
+		add_action( 'admin_print_scripts-profile.php', array( $this, 'hideAdminBar' ) );
+		add_action( 'admin_print_styles-user-edit.php', array( $this, 'hideAdminBar' ) );
 
 }
 
@@ -69,5 +71,11 @@ class DRMC_Med_Staff_Admin {
 		if( $column_name == 'drmc_department' )
 			return get_the_author_meta( 'drmc_department', $id );
 	}
+	
+	//hide toolbar option in profile - http://digwp.com/2011/04/admin-bar-tricks/
+	public function hideAdminBar() { ?>
+		<style type="text/css">.show-admin-bar { display: none; }</style>
+		<?php }
+
 
 }

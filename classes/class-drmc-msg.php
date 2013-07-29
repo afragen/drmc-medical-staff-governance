@@ -27,7 +27,8 @@ class DRMC_Med_Staff {
 		add_filter('login_redirect', array( $this, 'change_login_redirect' ), 10, 3);
 		add_action( 'init', array( $this, 'add_custom_taxonomies' ), 0 );
 		add_action( 'init', array( $this, 'create_post_type' ) );
-		
+		add_action( 'plugins_loaded', array( $this, 'hide_toolbar' ) );
+
 		is_admin() ? $this->load_admin() : $this->load_public() ;
 	}
 	
@@ -71,6 +72,16 @@ class DRMC_Med_Staff {
 		}
 		return $redirect_to;
 	}
+
+	//http://digwp.com/2011/04/admin-bar-tricks/
+	public function hide_toolbar() {
+		// show admin bar only for admins
+		//if( !current_user_can( 'manage_options' ) ) add_filter( 'show_admin_bar', '__return_false' );
+
+		// show admin bar only for admins and editors
+		if( !current_user_can( 'edit_posts' ) ) add_filter( 'show_admin_bar', '__return_false' );
+	}
+
 
 	/**
 	 * Add custom taxonomies

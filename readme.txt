@@ -3,7 +3,7 @@ Contributors: afragen
 Requires at least: 3.3
 Tested up to: 3.5.1
 GitHub URI: https://github.com/afragen/drmc-medical-staff-governance
-Version: 1.6
+Version: 1.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -33,6 +33,9 @@ This plugin requires several other plugins to achieve full functionality for the
 
 
 == Changelog ==
+
+= 1.7 =
+* added toolbar removal other than administrator and editor to plugin
 
 = 1.6 =
 * add validation to username
