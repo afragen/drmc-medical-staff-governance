@@ -1,5 +1,9 @@
 # Changelog for DRMC Medical Staff Governance
 
+## 1.7.2
+
+* added support for drmc_voting CPT in MOSI plugin
+
 ## 1.7.1
 
 * split out CHANGES.MD
