@@ -8,7 +8,7 @@ class DRMC_Med_Staff {
 	
 	public static function instance() {
 		$class = __CLASS__;
-		if (self::$object === false) self::$object = new $class();
+		if ( self::$object === false ) self::$object = new $class();
 		return self::$object;
 	}
 	
@@ -16,12 +16,13 @@ class DRMC_Med_Staff {
 			
 		self::$depts = array(
 			'--' => '',
-			'Emergency Medicine' => 'emergency-medicine',
-			'Medicine' => 'medicine',
-			'Pediatrics' => 'pediatrics',
+			'Family Practice'       => 'family-practice',
+			'Emergency Medicine'    => 'emergency-medicine',
+			'Medicine'              => 'medicine',
+			'Pediatrics'            => 'pediatrics',
 			'Obstetrics/Gynecology' => 'obstetrics-gynecology',
-			'Radiology' => 'radiology',
-			'Surgery' => 'surgery'
+			'Radiology'             => 'radiology',
+			'Surgery'               => 'surgery'
 			);	
 								
 		add_filter('login_redirect', array( $this, 'change_login_redirect' ), 10, 3);
@@ -66,8 +67,8 @@ class DRMC_Med_Staff {
 	}
 	
 	//http://nathany.com/redirecting-wordpress-subscribers
-	public function change_login_redirect($redirect_to, $request_redirect_to, $user) {
-		if (is_a($user, 'WP_User') && $user->has_cap('add_users') === false) {
+	public function change_login_redirect( $redirect_to, $request_redirect_to, $user ) {
+		if ( is_a( $user, 'WP_User' ) && $user->has_cap('add_users') === false ) {
 			return get_bloginfo('siteurl');
 		}
 		return $redirect_to;
@@ -76,7 +77,7 @@ class DRMC_Med_Staff {
 	//http://digwp.com/2011/04/admin-bar-tricks/
 	public function hide_toolbar() {
 		// show admin bar only for admins
-		if( !current_user_can( 'manage_options' ) ) add_filter( 'show_admin_bar', '__return_false' );
+		if( !current_user_can('manage_options') ) add_filter( 'show_admin_bar', '__return_false' );
 
 		// show admin bar only for admins and editors
 		//if( !current_user_can( 'edit_posts' ) ) add_filter( 'show_admin_bar', '__return_false' );
@@ -92,28 +93,28 @@ class DRMC_Med_Staff {
 	 */
 	public function add_custom_taxonomies() {
 		// Add new "Departments" taxonomy to Posts
-		register_taxonomy('department', 'drmc_voting', array(
+		register_taxonomy( 'department', 'drmc_voting', array(
 			// Hierarchical taxonomy (like categories)
 			'hierarchical' => false,
 			// This array of options controls the labels displayed in the WordPress Admin UI
-			'labels' => array(
-				'name' => _x( 'Departments', 'taxonomy general name' ),
-				'singular_name' => _x( 'Department', 'taxonomy singular name' ),
-				'search_items' =>  __( 'Search Departments' ),
-				'all_items' => __( 'All Departments' ),
-				'parent_item' => __( 'Parent Department' ),
+			'labels'       => array(
+				'name'              => _x( 'Departments', 'taxonomy general name' ),
+				'singular_name'     => _x( 'Department', 'taxonomy singular name' ),
+				'search_items'      =>  __( 'Search Departments' ),
+				'all_items'         => __( 'All Departments' ),
+				'parent_item'       => __( 'Parent Department' ),
 				'parent_item_colon' => __( 'Parent Department:' ),
-				'edit_item' => __( 'Edit Department' ),
-				'update_item' => __( 'Update Department' ),
-				'add_new_item' => __( 'Add New Department' ),
-				'new_item_name' => __( 'New Department Name' ),
-				'menu_name' => __( 'Departments' ),
+				'edit_item'         => __( 'Edit Department' ),
+				'update_item'       => __( 'Update Department' ),
+				'add_new_item'      => __( 'Add New Department' ),
+				'new_item_name'     => __( 'New Department Name' ),
+				'menu_name'         => __( 'Departments' ),
 			),
-			'query_var' => 'department',
+			'query_var'    => 'department',
 			// Control the slugs used for this taxonomy
-			'rewrite' => array(
-				'slug' => 'department', // This controls the base slug that will display before each term
-				'with_front' => false, // Don't display the category base before "/locations/"
+			'rewrite'      => array(
+				'slug'         => 'department', // This controls the base slug that will display before each term
+				'with_front'   => false, // Don't display the category base before "/locations/"
 				'hierarchical' => true // This will allow URL's like "/locations/boston/cambridge/"
 			),
 		));
@@ -123,14 +124,14 @@ class DRMC_Med_Staff {
 		register_post_type( 'drmc_voting',
 			array(
 				'labels' => array(  
-					'name' => __( 'Elections' ),  
+					'name'          => __( 'Elections' ),  
 					'singular_name' => __( 'Election' )
 				),
-			'public' => true,
+			'public'        => true,
 			'menu_position' => 5,
-			'rewrite' => array('slug' => 'elections'),
-			'taxonomies' => array( 'department' ),
-			'supports' => array('title', 'editor', 'comments', 'post-formats') 
+			'rewrite'       => array('slug' => 'elections'),
+			'taxonomies'    => array( 'department' ),
+			'supports'      => array('title', 'editor', 'comments', 'post-formats') 
 			)
 		);
 	}
