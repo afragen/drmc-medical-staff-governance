@@ -1,5 +1,10 @@
 # Changelog for DRMC Medical Staff Governance
 
+## 1.7.3
+
+ * added 'can\_vote' capability via Members plugin to _Administrator_ and _Active Staff_ roles.
+ * added shortcode `[voting]` for Members plugin
+
 ## 1.7.2
 
 * added support for drmc_voting CPT in MOSI plugin

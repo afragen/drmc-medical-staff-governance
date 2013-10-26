@@ -1,8 +1,8 @@
 # DRMC Medical Staff Governance
 
 Contributors: afragen
-Requires at least: 3.3
-Tested up to: 3.6.1
+Requires at least: 3.5
+Tested up to: 3.7
 GitHub Plugin URI: https://github.com/afragen/drmc-medical-staff-governance
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -11,7 +11,11 @@ Adding registration and custom user meta to site.
 
 ## Description
 
-This plugin adds registration, custom user meta, role and custom user meta specific menu options and other things for Medical Staff governance to the [DRMC Medical Staff website](http://drmcmedstaff.org). Combined with other plugins, listed below, and a theme containing 2 additional page templates; the website is capable of providing web-based voting for all Medical Staff and Departmental functions.
+This plugin adds registration, custom user meta, role and custom user meta specific menu options and other things for Medical Staff governance to the [DRMC Medical Staff website](http://drmcmedstaff.org).
+
+Combined with other plugins, listed below, and a theme containing 2 additional page templates; the website is capable of providing web-based voting for all Medical Staff and Departmental functions.
+
+Added `can_vote` capability to specific roles and added shortcode for Members plugin to hide/show poll created via WP_Polls plugin.
 
 ## Installation
 
