@@ -1,11 +1,6 @@
 # DRMC Medical Staff Governance
 
-Contributors: afragen
-Requires at least: 3.5
-Tested up to: 3.7
-GitHub Plugin URI: https://github.com/afragen/drmc-medical-staff-governance
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+
 
 Adding registration and custom user meta to site. 
 
@@ -16,6 +11,12 @@ This plugin adds registration, custom user meta, role and custom user meta speci
 Combined with other plugins, listed below, and a theme containing 2 additional page templates; the website is capable of providing web-based voting for all Medical Staff and Departmental functions.
 
 Added `can_vote` capability to specific roles and added shortcode for Members plugin to hide/show poll created via WP_Polls plugin.
+
+## Requirements
+
+ * Requires at least: 3.5
+ * Tested up to: 3.7
+
 
 ## Installation
 
@@ -35,4 +36,15 @@ This plugin requires several other plugins to achieve full functionality for the
 * [WordPress Access Control](http://brandonwamboldt.ca/plugins/members-only-menu-plugin/) by Brandon Wamboldt
 * [WP Polls](http://lesterchan.net/portfolio/programming/php/) by Lester 'GaMerZ' Chan
 
+## ChangeLog
 
+See [CHANGES.md](CHANGES.md).
+
+## Credits
+
+Built by [Andy Fragen](https://github.com/afragen) and [contributors](https://github.com/afragen/drmc-medical-staff-governance/graphs/contributors)
+
+## Licensing
+
+ * License: GPLv2 or later
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.html
