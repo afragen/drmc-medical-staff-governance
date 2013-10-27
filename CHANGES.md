@@ -1,5 +1,9 @@
 # Changelog for DRMC Medical Staff Governance
 
+## 1.7.4
+
+ * evaluate shortcode inside of `[voting]` shortcode
+
 ## 1.7.3
 
  * added 'can\_vote' capability via Members plugin to _Administrator_ and _Active Staff_ roles.
