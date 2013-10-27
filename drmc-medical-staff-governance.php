@@ -6,9 +6,9 @@ Plugin URI:        https://github.com/afragen/drmc-medical-staff-governance
 GitHub Plugin URI: afragen/drmc-medical-staff-governance
 GitHub Branch:     master
 Description:       This plugin adds registration, custom user meta and other things to the DRMC Medical Staff website for web-based governance.
-Requires at least: 3.3
+Requires at least: 3.5
 Tested up to:      3.7
-Version:           1.7.3
+Version:           1.7.4
 Author:            Andy Fragen
 Author URI:        http://thefragens.com
 License:           GNU General Public License v2
@@ -41,6 +41,6 @@ add_shortcode( 'voting', 'drmc_voting_check_shortcode' );
 function drmc_voting_check_shortcode( $attr, $content = null ) {
 	extract( shortcode_atts( array( 'capability' => 'can_vote' ), $attr ) );
 	if ( current_user_can( $capability ) && !is_null( $content ) && !is_feed() )
-		return $content;
+		return do_shortcode( $content );
 	return 'You do not have sufficient privileges to vote for this matter.';
 }
