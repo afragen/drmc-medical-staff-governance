@@ -1,5 +1,4 @@
 <?php
-
 class DRMC_Med_Staff_Public {
 
 	public function __construct() {

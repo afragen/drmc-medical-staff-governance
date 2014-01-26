@@ -1,5 +1,4 @@
 <?php
-
 //DRMC Medical Staff Governance
 class DRMC_Med_Staff {
 
@@ -43,10 +42,10 @@ class DRMC_Med_Staff {
 		new DRMC_Med_Staff_Public($this);
 	}
 
-	static function make_dropdown( $user ) {
-
+	public static function make_dropdown( $user ) {
 		$value = get_user_meta( $user->ID, 'drmc_department' );
-		if ( ! $value) { $value = $_POST['drmc_department']; }
+		if ( ! $_POST ) { $_POST['drmc_department'] = array( 0 => '' ); }
+		if ( ! $value ) { $value = $_POST['drmc_department']; }
 		$dropdown = array();
 		$dropdown[] = '<select name="drmc_department" id="drmc_department">';
 		foreach ( self::$depts as $dept => $tax ) {

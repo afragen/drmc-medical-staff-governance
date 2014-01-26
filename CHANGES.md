@@ -1,13 +1,19 @@
-### Changelog for DRMC Medical Staff Governance
+## Changelog for DRMC Medical Staff Governance
+
+#### 1.8.0
+
+* remove Facebook profile setting
+* fix undefined index error in `DRMC_Med_Staff::make_dropdown`
+* remove admin menu pages for non-admin users
 
 #### 1.7.4
 
- * evaluate shortcode inside of `[voting]` shortcode
+* evaluate shortcode inside of `[voting]` shortcode
 
 #### 1.7.3
 
- * added 'can\_vote' capability via Members plugin to _Administrator_ and _Active Staff_ roles.
- * added shortcode `[voting]` for Members plugin
+* added 'can\_vote' capability via Members plugin to _Administrator_ and _Active Staff_ roles.
+* added shortcode `[voting]` for Members plugin
 
 #### 1.7.2
 

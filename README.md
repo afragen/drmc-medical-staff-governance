@@ -1,7 +1,5 @@
 # DRMC Medical Staff Governance
 
-
-
 Adding registration and custom user meta to site. 
 
 ## Description
@@ -15,7 +13,7 @@ Added `can_vote` capability to specific roles and added shortcode for Members pl
 ## Requirements
 
  * Requires at least: 3.5
- * Tested up to: 3.7
+ * Tested up to: 3.8.1
 
 
 ## Installation
