@@ -19,11 +19,13 @@ class DRMC_Med_Staff_Admin {
 		add_action( 'edit_user_profile_update', array($this, 'wpq_save_extra_profile_fields') );
 		add_action( 'admin_print_scripts-profile.php', array( $this, 'hideAdminBar' ) );
 		add_action( 'admin_print_styles-user-edit.php', array( $this, 'hideAdminBar' ) );
+		
+		add_action( 'admin_menu', array( $this, 'edit_admin_menus' ) );
 
 }
 
 
-	public function remove_contactmethods($user_contactmethods) {
+	public static function remove_contactmethods($user_contactmethods) {
 		// You can get rid of ones you don't want
 		unset($user_contactmethods['jabber']);
 		unset($user_contactmethods['yim']);
@@ -32,12 +34,13 @@ class DRMC_Med_Staff_Admin {
 		//Added by WordPress SEO
 		unset($user_contactmethods['googleplus']);
 		unset($user_contactmethods['twitter']);
+		unset($user_contactmethods['facebook']);
 
 		return $user_contactmethods;
 	}
 
 
-	public function wpq_show_extra_profile_fields ( $user ) {
+	public static function wpq_show_extra_profile_fields ( $user ) {
 		$drmcmedstaff = DRMC_Med_Staff::instance();
 
 		?>
@@ -54,7 +57,7 @@ class DRMC_Med_Staff_Admin {
 	}
 
 
-	public function wpq_save_extra_profile_fields( $user_id ) {
+	public static function wpq_save_extra_profile_fields( $user_id ) {
 		if ( ! current_user_can( 'add_users' ) ) { return false; }
 		
 		// copy this line for other fields
@@ -67,15 +70,22 @@ class DRMC_Med_Staff_Admin {
 		return $defaults;
 	}
 
-	public function add_custom_user_columns($value, $column_name, $id) {
+	public static function add_custom_user_columns($value, $column_name, $id) {
 		if( $column_name == 'drmc_department' )
 			return get_the_author_meta( 'drmc_department', $id );
 	}
 	
 	//hide toolbar option in profile - http://digwp.com/2011/04/admin-bar-tricks/
-	public function hideAdminBar() { ?>
+	public static function hideAdminBar() { ?>
 		<style type="text/css">.show-admin-bar { display: none; }</style>
 		<?php }
 
+	public static function edit_admin_menus() {
+		if ( ! current_user_can( 'add_users' ) ) {
+			remove_menu_page( 'tools.php' );
+			remove_menu_page( 'edit-comments.php' );
+			remove_menu_page( 'edit.php?post_type=drmc_voting' );
+		}	
+	}
 
 }
