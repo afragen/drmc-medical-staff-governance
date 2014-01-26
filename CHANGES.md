@@ -1,8 +1,14 @@
-### Changelog for DRMC Medical Staff Governance
+## Changelog for DRMC Medical Staff Governance
+
+#### 1.8.0
+
+* remove Facebook profile setting
+* fix undefined index error in `DRMC_Med_Staff::make_dropdown`
+* remove admin menu pages for non-admin users
 
 #### 1.7.4
 
- * evaluate shortcode inside of `[voting]` shortcode
+* evaluate shortcode inside of `[voting]` shortcode
 
 #### 1.7.3
 
