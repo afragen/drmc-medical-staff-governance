@@ -81,9 +81,12 @@ class DRMC_Med_Staff_Admin {
 		<?php }
 
 	public static function edit_admin_menus() {
+		remove_menu_page( 'link-manager.php' );
 		if ( ! current_user_can( 'add_users' ) ) {
 			remove_menu_page( 'tools.php' );
 			remove_menu_page( 'edit-comments.php' );
+			remove_menu_page( 'edit.php?post_type=feedback' );
+			remove_menu_page( 'options-general.php' );
 			remove_menu_page( 'edit.php?post_type=drmc_voting' );
 		}	
 	}

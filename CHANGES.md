@@ -1,5 +1,9 @@
 ## Changelog for DRMC Medical Staff Governance
 
+#### 1.9.0
+
+* remove a few more admin menu items
+
 #### 1.8.0
 
 * remove Facebook profile setting
