@@ -5,25 +5,26 @@ Plugin URI:        https://github.com/afragen/drmc-medical-staff-governance
 Description:       This plugin adds registration, custom user meta and other things to the DRMC Medical Staff website for web-based governance.
 Requires at least: 3.5
 Tested up to:      3.8.1
-Version:           1.9.0
+Version:           1.9.0.1
 Author:            Andy Fragen
 Author URI:        http://thefragens.com
 License:           GNU General Public License v2
 License URI:       http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 GitHub Plugin URI: afragen/drmc-medical-staff-governance
-GitHub Branch:     master
+GitHub Branch:     develop
 */
 
 // We'll use PHP 5.2 syntax to get the plugin directory
 define('DRMC_DIR', dirname(__FILE__));
-define('DRMC_CLASSES', DRMC_DIR.'/classes');
-define('DRMC_INCLUDES', DRMC_DIR.'/includes');
-//define('DRMC_VIEWS', DRMC_DIR.'/views');
-//define('DRMC_RESOURCES', plugin_dir_url(__FILE__).'resources');
+define('DRMC_CLASSES', DRMC_DIR . '/classes');
+define('DRMC_INCLUDES', DRMC_DIR . '/includes');
+//define('DRMC_VIEWS', DRMC_DIR . '/views');
+//define('DRMC_RESOURCES', plugin_dir_url(__FILE__) . 'resources');
 
 //Load base class
-require_once( DRMC_CLASSES.'/class-drmc-msg.php' );
-//require_once( DRMC_INCLUDES.'/drmc-get-emails.php' );
+require_once( DRMC_CLASSES . '/class-drmc-msg.php' );
+//require_once( DRMC_INCLUDES . '/drmc-get-emails.php' );
+require_once( DRMC_CLASSES . '/class-drmc-edd.php' );
 
 // Launch
 DRMC_Med_Staff::instance();
