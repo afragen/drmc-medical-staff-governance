@@ -1,5 +1,10 @@
 ## Changelog for DRMC Medical Staff Governance
 
+#### 2.0.0
+
+* added class for Easy Digital Downloads customizations
+* bring up to WP Coding Guidelines
+
 #### 1.9.0
 
 * remove a few more admin menu items

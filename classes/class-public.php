@@ -3,11 +3,11 @@ class DRMC_Med_Staff_Public {
 
 	public function __construct() {
 		//Add custom fields to registration page
-		add_action( 'register_form', array($this, 'drmc_username') );
-		add_action( 'register_form', array($this, 'drmc_add_dropdown') );
-		add_action( 'register_form', array($this, 'drmc_add_warning') );
-		add_action( 'register_post', array($this, 'drmc_registration_errors'), 10, 3 );
-		add_action( 'user_register', array($this, 'drmc_register_extra_fields') );
+		add_action( 'register_form', array( $this, 'drmc_username' ) );
+		add_action( 'register_form', array( $this, 'drmc_add_dropdown' ) );
+		add_action( 'register_form', array( $this, 'drmc_add_warning' ) );
+		add_action( 'register_post', array( $this, 'drmc_registration_errors' ), 10, 3 );
+		add_action( 'user_register', array( $this, 'drmc_register_extra_fields' ) );
 	}
 
 	public function drmc_username() {
@@ -45,21 +45,26 @@ class DRMC_Med_Staff_Public {
 	private function ucname( $string ) {
 		$string =ucwords( strtolower( $string ) );
 		foreach( array( '-', '\'' ) as $delimiter) {
-			if( strpos( $string, $delimiter ) !== false )
+			if( false !== strpos( $string, $delimiter ) ) {
 				$string = implode( $delimiter, array_map( 'ucfirst', explode( $delimiter, $string ) ) );
+			}
 		}
 		return $string;
 	}
 	
 	public function drmc_registration_errors( $sanitized_user_login, $user_email, $errors  ) {
-		if( preg_match( '/[^-\.\w]/', $sanitized_user_login) )
+		if( preg_match( '/[^-\.\w]/', $sanitized_user_login) ) {
 			$errors->add( 'user_name', '<strong>ERROR</strong>: Your username contains one or more invalid characters. Please use your DRMC username.' );
-		if( empty( $_POST['first_name'] ) )
+		}
+		if( empty( $_POST['first_name'] ) ) {
 			$errors->add( 'first_name_error', '<strong>ERROR</strong>: You must include a first name.' );
-		if( empty( $_POST['last_name'] ) )
+		}
+		if( empty( $_POST['last_name'] ) ) {
 			$errors->add( 'last_name_error', '<strong>ERROR</strong>: You must include a last name.' );
-		if( empty( $_POST['drmc_department'] ) )
+		}
+		if( empty( $_POST['drmc_department'] ) ) {
 			$errors->add( 'drmc_department_error', '<strong>ERROR</strong>: You must include a department.' );
+		}
 		return $errors;
 	}
 	

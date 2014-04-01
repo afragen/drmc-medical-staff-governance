@@ -7,7 +7,7 @@ class DRMC_Med_Staff {
 	
 	public static function instance() {
 		$class = __CLASS__;
-		if ( self::$object === false ) self::$object = new $class();
+		if ( false === self::$object ) self::$object = new $class();
 		return self::$object;
 	}
 	
@@ -24,7 +24,7 @@ class DRMC_Med_Staff {
 			'Surgery'               => 'surgery'
 			);	
 								
-		add_filter('login_redirect', array( $this, 'change_login_redirect' ), 10, 3);
+		add_filter( 'login_redirect', array( $this, 'change_login_redirect' ), 10, 3);
 		add_action( 'init', array( $this, 'add_custom_taxonomies' ), 0 );
 		add_action( 'init', array( $this, 'create_post_type' ) );
 		add_action( 'plugins_loaded', array( $this, 'hide_toolbar' ) );
@@ -33,27 +33,27 @@ class DRMC_Med_Staff {
 	}
 	
 	protected function load_admin() {
-		require_once DRMC_CLASSES.'/class-admin.php';
-		new DRMC_Med_Staff_Admin($this);
+		require_once DRMC_CLASSES . '/class-admin.php';
+		new DRMC_Med_Staff_Admin( $this );
 	}
 
 	protected function load_public() {
-		require_once DRMC_CLASSES.'/class-public.php';
-		new DRMC_Med_Staff_Public($this);
+		require_once DRMC_CLASSES . '/class-public.php';
+		new DRMC_Med_Staff_Public( $this );
 	}
 
 	public static function make_dropdown( $user ) {
 		$value = get_user_meta( $user->ID, 'drmc_department' );
 		if ( ! $_POST ) { $_POST['drmc_department'] = array( 0 => '' ); }
 		if ( ! $value ) { $value = $_POST['drmc_department']; }
-		$dropdown = array();
+		$dropdown   = array();
 		$dropdown[] = '<select name="drmc_department" id="drmc_department">';
 		foreach ( self::$depts as $dept => $tax ) {
 			$dropdown[] = "<option value='$tax' " . selected($value[0], $tax, false) . ">$dept</option>";
 			//$dropdown[] = '<option value="'. $tax . '" <' . '?php selected( $value, "' . $tax . '" ); ?' . '>>' . $dept . '</option>';
 		}
 		$dropdown[] = '</select>';
-		$content = implode( "\n", $dropdown );
+		$content    = implode( "\n", $dropdown );
 		echo $content;
 	}
 
@@ -67,7 +67,7 @@ class DRMC_Med_Staff {
 	
 	//http://nathany.com/redirecting-wordpress-subscribers
 	public function change_login_redirect( $redirect_to, $request_redirect_to, $user ) {
-		if ( is_a( $user, 'WP_User' ) && $user->has_cap('add_users') === false ) {
+		if ( is_a( $user, 'WP_User' ) && false === $user->has_cap('add_users') ) {
 			return get_bloginfo('siteurl');
 		}
 		return $redirect_to;
@@ -76,10 +76,10 @@ class DRMC_Med_Staff {
 	//http://digwp.com/2011/04/admin-bar-tricks/
 	public function hide_toolbar() {
 		// show admin bar only for admins
-		if( !current_user_can('manage_options') ) add_filter( 'show_admin_bar', '__return_false' );
+		if( ! current_user_can('manage_options') ) add_filter( 'show_admin_bar', '__return_false' );
 
 		// show admin bar only for admins and editors
-		//if( !current_user_can( 'edit_posts' ) ) add_filter( 'show_admin_bar', '__return_false' );
+		//if( ! current_user_can( 'edit_posts' ) ) add_filter( 'show_admin_bar', '__return_false' );
 	}
 
 
@@ -99,7 +99,7 @@ class DRMC_Med_Staff {
 			'labels'       => array(
 				'name'              => _x( 'Departments', 'taxonomy general name' ),
 				'singular_name'     => _x( 'Department', 'taxonomy singular name' ),
-				'search_items'      =>  __( 'Search Departments' ),
+				'search_items'      => __( 'Search Departments' ),
 				'all_items'         => __( 'All Departments' ),
 				'parent_item'       => __( 'Parent Department' ),
 				'parent_item_colon' => __( 'Parent Department:' ),

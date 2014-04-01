@@ -5,7 +5,7 @@ Plugin URI:        https://github.com/afragen/drmc-medical-staff-governance
 Description:       This plugin adds registration, custom user meta and other things to the DRMC Medical Staff website for web-based governance.
 Requires at least: 3.5
 Tested up to:      3.8.1
-Version:           1.9.0.1
+Version:           1.9.1
 Author:            Andy Fragen
 Author URI:        http://thefragens.com
 License:           GNU General Public License v2
@@ -30,7 +30,7 @@ require_once( DRMC_CLASSES . '/class-drmc-edd.php' );
 DRMC_Med_Staff::instance();
 
 // add support for Markdown on Save Improved plugin
-add_action( 'init', 'drmc_prefix_add_markdown_support' );
+//add_action( 'init', 'drmc_prefix_add_markdown_support' );
 function drmc_prefix_add_markdown_support(){
     add_post_type_support( 'drmc_voting', 'markdown-osi' );
 }

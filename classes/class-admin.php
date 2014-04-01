@@ -25,22 +25,22 @@ class DRMC_Med_Staff_Admin {
 }
 
 
-	public static function remove_contactmethods($user_contactmethods) {
+	public static function remove_contactmethods( $user_contactmethods ) {
 		// You can get rid of ones you don't want
-		unset($user_contactmethods['jabber']);
-		unset($user_contactmethods['yim']);
-		unset($user_contactmethods['aim']);
+		unset( $user_contactmethods['jabber'] );
+		unset( $user_contactmethods['yim'] );
+		unset( $user_contactmethods['aim'] );
 
 		//Added by WordPress SEO
-		unset($user_contactmethods['googleplus']);
-		unset($user_contactmethods['twitter']);
-		unset($user_contactmethods['facebook']);
+		unset( $user_contactmethods['googleplus'] );
+		unset( $user_contactmethods['twitter'] );
+		unset( $user_contactmethods['facebook'] );
 
 		return $user_contactmethods;
 	}
 
 
-	public static function wpq_show_extra_profile_fields ( $user ) {
+	public static function wpq_show_extra_profile_fields( $user ) {
 		$drmcmedstaff = DRMC_Med_Staff::instance();
 
 		?>
