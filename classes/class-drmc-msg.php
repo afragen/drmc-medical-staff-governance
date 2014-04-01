@@ -67,8 +67,8 @@ class DRMC_Med_Staff {
 	
 	//http://nathany.com/redirecting-wordpress-subscribers
 	public function change_login_redirect( $redirect_to, $request_redirect_to, $user ) {
-		if ( is_a( $user, 'WP_User' ) && false === $user->has_cap('add_users') ) {
-			return get_bloginfo('siteurl');
+		if ( is_a( $user, 'WP_User' ) && false === $user->has_cap( 'add_users' ) ) {
+			return get_bloginfo( 'siteurl' );
 		}
 		return $redirect_to;
 	}
@@ -76,7 +76,7 @@ class DRMC_Med_Staff {
 	//http://digwp.com/2011/04/admin-bar-tricks/
 	public function hide_toolbar() {
 		// show admin bar only for admins
-		if( ! current_user_can('manage_options') ) add_filter( 'show_admin_bar', '__return_false' );
+		if( ! current_user_can( 'manage_options' ) ) add_filter( 'show_admin_bar', '__return_false' );
 
 		// show admin bar only for admins and editors
 		//if( ! current_user_can( 'edit_posts' ) ) add_filter( 'show_admin_bar', '__return_false' );
@@ -128,9 +128,9 @@ class DRMC_Med_Staff {
 				),
 			'public'        => true,
 			'menu_position' => 5,
-			'rewrite'       => array('slug' => 'elections'),
+			'rewrite'       => array( 'slug' => 'elections' ),
 			'taxonomies'    => array( 'department' ),
-			'supports'      => array('title', 'editor', 'comments', 'post-formats') 
+			'supports'      => array( 'title', 'editor', 'comments', 'post-formats' ) 
 			)
 		);
 	}

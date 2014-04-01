@@ -11,12 +11,12 @@ class DRMC_Med_Staff_Admin {
 		
 		// Add additional custom fields to profile page
 		// http://pastebin.com/0zhWAtqY
-		add_action ( 'show_user_profile', array($this, 'wpq_show_extra_profile_fields') );
-		add_action ( 'edit_user_profile', array($this, 'wpq_show_extra_profile_fields') );
+		add_action ( 'show_user_profile', array( $this, 'wpq_show_extra_profile_fields' ) );
+		add_action ( 'edit_user_profile', array( $this, 'wpq_show_extra_profile_fields' ) );
 
 		// Save data input from custom field on profile page
-		add_action( 'personal_options_update', array($this, 'wpq_save_extra_profile_fields') );
-		add_action( 'edit_user_profile_update', array($this, 'wpq_save_extra_profile_fields') );
+		add_action( 'personal_options_update', array( $this, 'wpq_save_extra_profile_fields' ) );
+		add_action( 'edit_user_profile_update', array( $this, 'wpq_save_extra_profile_fields' ) );
 		add_action( 'admin_print_scripts-profile.php', array( $this, 'hideAdminBar' ) );
 		add_action( 'admin_print_styles-user-edit.php', array( $this, 'hideAdminBar' ) );
 		
@@ -70,8 +70,8 @@ class DRMC_Med_Staff_Admin {
 		return $defaults;
 	}
 
-	public static function add_custom_user_columns($value, $column_name, $id) {
-		if( $column_name == 'drmc_department' )
+	public static function add_custom_user_columns( $value, $column_name, $id ) {
+		if ( 'drmc_department' == $column_name )
 			return get_the_author_meta( 'drmc_department', $id );
 	}
 	

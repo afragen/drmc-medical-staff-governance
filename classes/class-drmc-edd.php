@@ -2,7 +2,6 @@
 
 add_filter( 'edd_downloads_query', 'DRMC_Med_Staff_EDD::sumobi_edd_downloads_query', 10, 2 );
 add_action( 'edd_purchase_form_user_info', 'DRMC_Med_Staff_EDD::edd_custom_checkout_fields');
-//add_action('edd_checkout_error_checks', 'DRMC_Med_Staff_EDD::edd_validate_custom_fields', 10, 2);
 add_filter( 'edd_payment_meta', 'DRMC_Med_Staff_EDD::edd_store_custom_fields');
 add_action( 'edd_payment_personal_details_list', 'DRMC_Med_Staff_EDD::edd_purchase_details', 10, 2);
 add_filter( 'edd_sale_notification', 'DRMC_Med_Staff_EDD::edd_sale_notification', 10, 3 );
@@ -11,7 +10,7 @@ class DRMC_Med_Staff_EDD {
 	public function sumobi_edd_downloads_query( $query, $atts ) {
 		global $wp_query;
 
-		if ( 'cme-symposium-tickets' === $wp_query->query_vars['pagename'] ) {
+		if ( 'cme-symposia-tickets' === $wp_query->query_vars['pagename'] ) {
 			$query['meta_key'] = '_tribe_eddticket_for_event';
 		}
 		return $query;
@@ -27,22 +26,14 @@ class DRMC_Med_Staff_EDD {
 		<?php
 	}
 
-	// check for errors with out custom fields
-	public function edd_validate_custom_fields($valid_data, $data) {
-		if( empty( $data['dmrc_memo'] ) ) {
-			// check for a phone number
-			return false;
-		}
-	}
-
 	// store the custom field data in the payment meta
-	public function edd_store_custom_fields($payment_meta) {
+	public function edd_store_custom_fields( $payment_meta ) {
 		$payment_meta['memo']   = isset( $_POST['drmc_memo'] ) ? sanitize_text_field( $_POST['drmc_memo'] ) : '';
 		return $payment_meta;
 	}
 
 	// show the custom fields in the "View Order Details" popup
-	public function edd_purchase_details($payment_meta, $user_info) {
+	public function edd_purchase_details( $payment_meta, $user_info ) {
 		$memo = isset( $payment_meta['memo'] ) ? $payment_meta['memo'] : 'none';
 		?>
 		<li><?php echo __('Memo:', 'drmc') . ' ' . $memo; ?></li>
