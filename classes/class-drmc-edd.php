@@ -1,10 +1,12 @@
 <?php
 
 add_filter( 'edd_downloads_query', 'DRMC_Med_Staff_EDD::sumobi_edd_downloads_query', 10, 2 );
-add_action( 'edd_purchase_form_user_info', 'DRMC_Med_Staff_EDD::edd_custom_checkout_fields');
-add_filter( 'edd_payment_meta', 'DRMC_Med_Staff_EDD::edd_store_custom_fields');
-add_action( 'edd_payment_personal_details_list', 'DRMC_Med_Staff_EDD::edd_purchase_details', 10, 2);
-add_filter( 'edd_sale_notification', 'DRMC_Med_Staff_EDD::edd_sale_notification', 10, 3 );
+add_action( 'edd_purchase_form_user_info', 'DRMC_Med_Staff_EDD::pippin_edd_custom_checkout_fields');
+add_filter( 'edd_payment_meta', 'DRMC_Med_Staff_EDD::pippin_edd_store_custom_fields');
+add_action( 'edd_payment_personal_details_list', 'DRMC_Med_Staff_EDD::pippin_edd_purchase_details', 10, 2);
+add_filter( 'edd_sale_notification', 'DRMC_Med_Staff_EDD::pippin_edd_sale_notification', 10, 3 );
+add_filter( 'edd_download_supports', 'DRMC_Med_Staff_EDD::pw_edd_add_author_support');
+
 
 class DRMC_Med_Staff_EDD {
 	public function sumobi_edd_downloads_query( $query, $atts ) {
@@ -17,7 +19,7 @@ class DRMC_Med_Staff_EDD {
 	}
 
 	// output our custom field HTML
-	public function edd_custom_checkout_fields() {
+	public function pippin_edd_custom_checkout_fields() {
 		?>
 		<p>
 			<label class="edd-label" for="drmc-memo"><?php _e('Memo', 'drmc'); ?></label>
@@ -27,13 +29,13 @@ class DRMC_Med_Staff_EDD {
 	}
 
 	// store the custom field data in the payment meta
-	public function edd_store_custom_fields( $payment_meta ) {
+	public function pippin_edd_store_custom_fields( $payment_meta ) {
 		$payment_meta['memo']   = isset( $_POST['drmc_memo'] ) ? sanitize_text_field( $_POST['drmc_memo'] ) : '';
 		return $payment_meta;
 	}
 
 	// show the custom fields in the "View Order Details" popup
-	public function edd_purchase_details( $payment_meta, $user_info ) {
+	public function pippin_edd_purchase_details( $payment_meta, $user_info ) {
 		$memo = isset( $payment_meta['memo'] ) ? $payment_meta['memo'] : 'none';
 		?>
 		<li><?php echo __('Memo:', 'drmc') . ' ' . $memo; ?></li>
@@ -41,7 +43,7 @@ class DRMC_Med_Staff_EDD {
 		<?php
 	}
 
-	public function edd_sale_notification( $email_body, $payment_id, $payment_data ) {
+	public function pippin_edd_sale_notification( $email_body, $payment_id, $payment_data ) {
 		// retrieve payment meta array and unserialize it
 		$payment_meta = maybe_unserialize( get_post_meta( $payment_id, '_edd_payment_meta', true ) );
 
@@ -53,6 +55,11 @@ class DRMC_Med_Staff_EDD {
 		$email_body .= 'Memo: ' . $memo . '<br />';
 
 		return $email_body;
+	}
+
+	public function pw_edd_add_author_support( $supports ) {
+		$supports[] = 'author';
+		return $supports;	
 	}
 
 }

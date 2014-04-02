@@ -44,7 +44,7 @@ class DRMC_Med_Staff_Public {
 	
 	private function ucname( $string ) {
 		$string =ucwords( strtolower( $string ) );
-		foreach ( array( '-', '\'' ) as $delimiter) {
+		foreach ( array( '-', '\'' ) as $delimiter ) {
 			if ( false !== strpos( $string, $delimiter ) ) {
 				$string = implode( $delimiter, array_map( 'ucfirst', explode( $delimiter, $string ) ) );
 			}
