@@ -88,7 +88,10 @@ class DRMC_Med_Staff_Admin {
 			remove_menu_page( 'edit.php?post_type=feedback' );
 			remove_menu_page( 'options-general.php' );
 			remove_menu_page( 'edit.php?post_type=drmc_voting' );
-		}	
+		}
+		if ( ! current_user_can( 'publish_posts' ) ) {
+			remove_menu_page( 'edit.php?post_type=tribe_events' );	
+		}
 	}
 
 }
