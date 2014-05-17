@@ -15,7 +15,7 @@ This plugin adds registration, custom user meta, role and custom user meta speci
 
 Combined with other plugins, listed below, and a theme containing 2 additional page templates; the website is capable of providing web-based voting for all Medical Staff and Departmental functions.
 
-Added `can_vote` capability to specific roles and added shortcode to hide/show poll created via WP_Polls plugin.
+Add `can_vote` capability to specific roles using the Members plugin and added `[voting]` shortcode to hide/show poll created via WP_Polls plugin.
 
 ## Installation
 
