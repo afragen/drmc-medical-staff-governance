@@ -5,6 +5,7 @@
 * added class for Easy Digital Downloads customizations
 * bring up to WP Coding Guidelines
 * remove 'Events' menu for user's below Editor
+* updated README.md and code cleanup
 
 #### 1.9.0
 
