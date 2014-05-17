@@ -1,4 +1,11 @@
 # DRMC Medical Staff Governance
+* Contributors: [afragen](https://github.com/afragen)
+* Tags: plugin, custom
+* Requires at least: 3.5
+* Tested up to: 3.9.1
+* Stable tag: master
+* License: GPLv2 or later
+* License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Adding registration and custom user meta to site. 
 
@@ -8,13 +15,7 @@ This plugin adds registration, custom user meta, role and custom user meta speci
 
 Combined with other plugins, listed below, and a theme containing 2 additional page templates; the website is capable of providing web-based voting for all Medical Staff and Departmental functions.
 
-Added `can_vote` capability to specific roles and added shortcode for Members plugin to hide/show poll created via WP_Polls plugin.
-
-## Requirements
-
- * Requires at least: 3.5
- * Tested up to: 3.8.1
-
+Added `can_vote` capability to specific roles and added shortcode to hide/show poll created via WP_Polls plugin.
 
 ## Installation
 
@@ -29,9 +30,11 @@ This section describes how to install the plugin and get it working.
 
 This plugin requires several other plugins to achieve full functionality for the site.
 
+* [Easy Digital Downloads](http://easydigitaldownloads.com/) by Pippin Williamson
+* [Email Users](http://wordpress.org/extend/plugins/email-users/) by Mike Walsh
 * [Members](http://justintadlock.com/archives/2009/09/17/members-wordpress-plugin) by Justin Tadlock
+* [Menu Items Visibility Control](https://wordpress.org/plugins/menu-items-visibility-control/) by Hassan Derakhshandeh
 * [New User Approve](http://www.picklewagon.com/wordpress/new-user-approve/) by Josh Harrison
-* [WordPress Access Control](http://brandonwamboldt.ca/plugins/members-only-menu-plugin/) by Brandon Wamboldt
 * [WP Polls](http://lesterchan.net/portfolio/programming/php/) by Lester 'GaMerZ' Chan
 
 ## ChangeLog
@@ -41,8 +44,3 @@ See [CHANGES.md](CHANGES.md).
 ## Credits
 
 Built by [Andy Fragen](https://github.com/afragen) and [contributors](https://github.com/afragen/drmc-medical-staff-governance/graphs/contributors)
-
-## Licensing
-
- * License: GPLv2 or later
- * License URI: http://www.gnu.org/licenses/gpl-2.0.html
