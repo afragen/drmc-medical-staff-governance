@@ -19,14 +19,12 @@ class DRMC_Med_Staff_EDD {
 	}
 
 	// output our custom field HTML
-	public function pippin_edd_custom_checkout_fields() {
-		?>
+	public function pippin_edd_custom_checkout_fields() { ?>
 		<p>
 			<label class="edd-label" for="drmc-memo"><?php _e('Memo', 'drmc'); ?></label>
 			<input class="edd-input required" type="text" name="drmc_memo" id="drmc-memo" placeholder="<?php _e('Memo', 'drmc'); ?>" value=""/>
 		</p>
-		<?php
-	}
+	<?php }
 
 	// store the custom field data in the payment meta
 	public function pippin_edd_store_custom_fields( $payment_meta ) {
@@ -39,7 +37,6 @@ class DRMC_Med_Staff_EDD {
 		$memo = isset( $payment_meta['memo'] ) ? $payment_meta['memo'] : 'none';
 		?>
 		<li><?php echo __('Memo:', 'drmc') . ' ' . $memo; ?></li>
-
 		<?php
 	}
 

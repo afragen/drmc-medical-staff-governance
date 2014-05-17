@@ -1,6 +1,7 @@
 <?php
 
 add_filter( 'user_contactmethods', 'DRMC_Med_Staff_Admin::remove_contactmethods', 100 );
+
 //add columns to User panel list page
 add_action( 'manage_users_custom_column', 'DRMC_Med_Staff_Admin::add_custom_user_columns', 15, 3 );
 add_filter( 'manage_users_columns', 'DRMC_Med_Staff_Admin::add_user_columns', 15, 1 );
@@ -78,7 +79,7 @@ class DRMC_Med_Staff_Admin {
 	//hide toolbar option in profile - http://digwp.com/2011/04/admin-bar-tricks/
 	public static function hideAdminBar() { ?>
 		<style type="text/css">.show-admin-bar { display: none; }</style>
-		<?php }
+	<?php }
 
 	public static function edit_admin_menus() {
 		remove_menu_page( 'link-manager.php' );

@@ -7,7 +7,7 @@ class DRMC_Med_Staff {
 	
 	public static function instance() {
 		$class = __CLASS__;
-		if ( false === self::$object ) self::$object = new $class();
+		if ( false === self::$object ) { self::$object = new $class(); }
 		return self::$object;
 	}
 	
@@ -29,7 +29,7 @@ class DRMC_Med_Staff {
 		add_action( 'init', array( $this, 'create_post_type' ) );
 		add_action( 'plugins_loaded', array( $this, 'hide_toolbar' ) );
 
-		is_admin() ? $this->load_admin() : $this->load_public() ;
+		is_admin() ? $this->load_admin() : $this->load_public();
 	}
 	
 	protected function load_admin() {
@@ -76,10 +76,10 @@ class DRMC_Med_Staff {
 	//http://digwp.com/2011/04/admin-bar-tricks/
 	public function hide_toolbar() {
 		// show admin bar only for admins
-		if( ! current_user_can( 'manage_options' ) ) add_filter( 'show_admin_bar', '__return_false' );
+		if( ! current_user_can( 'manage_options' ) ) { add_filter( 'show_admin_bar', '__return_false' ); }
 
 		// show admin bar only for admins and editors
-		//if( ! current_user_can( 'edit_posts' ) ) add_filter( 'show_admin_bar', '__return_false' );
+		//if( ! current_user_can( 'edit_posts' ) ) { add_filter( 'show_admin_bar', '__return_false' ); }
 	}
 
 

@@ -36,14 +36,14 @@ class DRMC_Med_Staff_Public {
 		update_user_meta( $user_id, 'first_name', $fname );
 		update_user_meta( $user_id, 'last_name', $lname );
 		wp_update_user( array(
-								ID             => $user_id,
-								'display_name' => $fname . ' ' . $lname
-							)
-						);
+							ID             => $user_id,
+							'display_name' => $fname . ' ' . $lname
+						)
+					);
 	}
 	
 	private function ucname( $string ) {
-		$string =ucwords( strtolower( $string ) );
+		$string = ucwords( strtolower( $string ) );
 		foreach ( array( '-', '\'' ) as $delimiter ) {
 			if ( false !== strpos( $string, $delimiter ) ) {
 				$string = implode( $delimiter, array_map( 'ucfirst', explode( $delimiter, $string ) ) );
