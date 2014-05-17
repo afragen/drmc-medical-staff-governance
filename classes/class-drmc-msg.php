@@ -128,6 +128,7 @@ class DRMC_Med_Staff {
 				),
 			'public'        => true,
 			'menu_position' => 5,
+			'menu_icon'     => 'dashicons-chart-bar',
 			'rewrite'       => array( 'slug' => 'elections' ),
 			'taxonomies'    => array( 'department' ),
 			'supports'      => array( 'title', 'editor', 'comments', 'post-formats' ) 

@@ -6,6 +6,7 @@
 * bring up to WP Coding Guidelines
 * remove 'Events' menu for user's below Editor
 * updated README.md and code cleanup
+* added dashicon
 
 #### 1.9.0
 
