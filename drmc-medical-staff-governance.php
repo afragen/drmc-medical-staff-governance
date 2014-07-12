@@ -5,7 +5,7 @@ Plugin URI:        https://github.com/afragen/drmc-medical-staff-governance
 Description:       This plugin adds registration, custom user meta and other things to the DRMC Medical Staff website for web-based governance.
 Requires at least: 3.8
 Tested up to:      3.9.1
-Version:           1.9.8
+Version:           1.9.8.1
 Author:            Andy Fragen
 Author URI:        http://thefragens.com
 License:           GNU General Public License v2
@@ -37,8 +37,8 @@ function drmc_prefix_add_markdown_support(){
 // assumes Role Manager plugin added 'can_vote' capability
 add_shortcode( 'voting', 'drmc_voting_check_shortcode' );
 function drmc_voting_check_shortcode( $attr, $content = null ) {
-	extract( shortcode_atts( array( 'capability' => 'can_vote' ), $attr, 'voting' ) );
-	if ( current_user_can( $capability ) && !is_null( $content ) && !is_feed() ) {
+	$atts = shortcode_atts( array( 'capability' => 'can_vote' ), $attr, 'voting' );
+	if ( current_user_can( $atts['capability'] ) && !is_null( $content ) && !is_feed() ) {
 		return do_shortcode( $content );
 	}
 	return 'You do not have sufficient privileges to vote for this matter.';

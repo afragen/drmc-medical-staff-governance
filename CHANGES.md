@@ -7,6 +7,8 @@
 * remove 'Events' menu for user's below Editor
 * updated README.md and code cleanup
 * added dashicon
+* added plugin specific CSS to load from plugin
+* removed `extract()`
 
 #### 1.9.0
 
