@@ -8,6 +8,8 @@ class DRMC_Med_Staff_Public {
 		add_action( 'register_form', array( $this, 'drmc_add_warning' ) );
 		add_action( 'register_post', array( $this, 'drmc_registration_errors' ), 10, 3 );
 		add_action( 'user_register', array( $this, 'drmc_register_extra_fields' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'add_css'), 99 );
+
 	}
 
 	public function drmc_username() {
@@ -66,6 +68,10 @@ class DRMC_Med_Staff_Public {
 			$errors->add( 'drmc_department_error', '<strong>ERROR</strong>: You must include a department.' );
 		}
 		return $errors;
+	}
+
+	public static function add_css() {
+		wp_enqueue_style( 'drmc' , plugins_url( 'includes/drmc.css', dirname( __FILE__ ) ) );
 	}
 	
 } //end class DRMC_Med_Staff_Public
