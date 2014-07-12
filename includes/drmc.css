@@ -24,6 +24,7 @@ img {
 	display: block;
 	position: relative;
 	background-color: #fff;
+	border-radius: 3px;
 	border: 1px solid #a9a9a9;
 	margin: -6px 6px 6px 6px;
 	padding: 4px;
