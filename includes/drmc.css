@@ -1,8 +1,3 @@
-/* MEC images, cropped then scaled to 2x3 inches */
-#content td>img { max-width: 100px; float: right; }
-#content table, #content td { border: none; }
-#content th { font-size: 1em; }
-
 .des-insert { color: #0000ff; text-decoration: underline; }
 .des-delete { color: #d80000; text-decoration: line-through; }
 
