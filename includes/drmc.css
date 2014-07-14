@@ -1,6 +1,3 @@
-.des-insert { color: #0000ff; text-decoration: underline; }
-.des-delete { color: #d80000; text-decoration: line-through; }
-
 /* Highlight Voting menu */
 li.drmc-highlight-menu > a,
 li.drmc-highlight-menu > a:hover,
@@ -28,13 +25,14 @@ img {
 }
 
 /* remove drop shadow from smiley */
-img.wp-smiley {
+img.wp-smiley, img.header-image {
 	display: inline;
 	position: inherit;
 	background-color: transparent;
 	border: none;
 	margin: 0;
 	padding: 0;
+	width: auto;
 	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
 }
