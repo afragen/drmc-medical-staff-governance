@@ -9,6 +9,7 @@
 * added dashicon
 * added plugin specific CSS to load from plugin
 * removed `extract()`
+* added `register_activation_hook` to create Voting/Non-Voting roles
 
 #### 1.9.0
 

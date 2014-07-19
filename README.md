@@ -32,7 +32,6 @@ This plugin requires several other plugins to achieve full functionality for the
 
 * [Easy Digital Downloads](http://easydigitaldownloads.com/) by Pippin Williamson
 * [Email Users](http://wordpress.org/extend/plugins/email-users/) by Mike Walsh
-* [Members](http://justintadlock.com/archives/2009/09/17/members-wordpress-plugin) by Justin Tadlock
 * [Menu Items Visibility Control](https://wordpress.org/plugins/menu-items-visibility-control/) by Hassan Derakhshandeh
 * [New User Approve](http://www.picklewagon.com/wordpress/new-user-approve/) by Josh Harrison
 * [WP Polls](http://lesterchan.net/portfolio/programming/php/) by Lester 'GaMerZ' Chan

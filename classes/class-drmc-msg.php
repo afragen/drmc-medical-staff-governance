@@ -15,8 +15,8 @@ class DRMC_Med_Staff {
 			
 		self::$depts = array(
 			'--' => '',
-			'Family Practice'       => 'family-practice',
 			'Emergency Medicine'    => 'emergency-medicine',
+			'Family Medicine'       => 'family-medicine',
 			'Medicine'              => 'medicine',
 			'Pediatrics'            => 'pediatrics',
 			'Obstetrics/Gynecology' => 'obstetrics-gynecology',
@@ -135,5 +135,24 @@ class DRMC_Med_Staff {
 			)
 		);
 	}
-	
+
+	public function add_user_roles() {
+		add_role( 'voting_staff', 'Voting Staff',
+			array(
+				'read'     => true,
+				'can_vote' => true,
+			)
+		);
+		add_role( 'non_voting_staff', 'Non-Voting Staff',
+			array(
+				'read'     => true,
+				'can_vote' => false,
+			)
+		);
+	}
+
+	public static function activate() {
+		self::add_user_roles();
+	}
+
 } //end class DRMC_Med_Staff
