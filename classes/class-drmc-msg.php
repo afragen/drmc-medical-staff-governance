@@ -151,8 +151,14 @@ class DRMC_Med_Staff {
 		);
 	}
 
+	public function add_admin_voting() {
+		$role = get_role( 'administrator' );
+		$role->add_cap( 'can_vote' );
+	}
+
 	public static function activate() {
 		self::add_user_roles();
+		self::add_admin_voting();
 	}
 
 } //end class DRMC_Med_Staff
