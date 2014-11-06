@@ -11,6 +11,7 @@
 * removed `extract()`
 * added `register_activation_hook` to create Voting/Non-Voting roles
 * add 'can_vote' to admin user.
+* add automatic 'Log In'/'Log Out' menu
 
 #### 1.9.0
 
