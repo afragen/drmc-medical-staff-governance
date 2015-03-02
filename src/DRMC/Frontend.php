@@ -1,5 +1,8 @@
 <?php
-class DRMC_Med_Staff_Public {
+
+namespace Fragen\DRMC;
+
+class Frontend {
 
 	public function __construct() {
 		//Add custom fields to registration page
@@ -9,7 +12,6 @@ class DRMC_Med_Staff_Public {
 		add_action( 'register_post', array( $this, 'drmc_registration_errors' ), 10, 3 );
 		add_action( 'user_register', array( $this, 'drmc_register_extra_fields' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'add_css'), 99 );
-		add_filter( 'wp_nav_menu_items', array( $this, 'loginout_menu_link'), 10, 2 );
 	}
 
 	public function drmc_username() {
@@ -23,12 +25,15 @@ class DRMC_Med_Staff_Public {
 	}
 
 	public function drmc_add_dropdown( $user ) {
-		$drmcmedstaff = DRMC_Med_Staff::instance();
-		$drmcmedstaff::make_dropdown( $user );
+		Base::make_dropdown( $user );
 	}
 
 	public function drmc_add_warning() {
-		echo '<br /><br /><p class="message">You must use your DRMC username as your <strong>Username</strong> or your registration will be denied.</p><br />';
+		?>
+			<p style="margin: 15px 0;" class="message">
+				You must use your DRMC username as your <strong>Username</strong> or your registration will be denied.
+			</p>
+		<?php
 	}
 
 	public function drmc_register_extra_fields ( $user_id ) {
@@ -71,19 +76,8 @@ class DRMC_Med_Staff_Public {
 	}
 
 	public static function add_css() {
-		wp_enqueue_style( 'drmc' , plugins_url( 'includes/drmc.css', dirname( __FILE__ ) ) );
+		$_1 = plugins_url( 'includes/drmc.css', dirname( dirname( __FILE__ ) ) );
+		wp_enqueue_style( 'drmc' , plugins_url( 'includes/drmc.css', dirname( dirname( __FILE__ ) ) ) );
 	}
 
-	public function loginout_menu_link( $items, $args ) {
-		if ( 'primary' == $args->theme_location ) {
-			if ( is_user_logged_in() ) {
-				$items .= '<li><a href="'. wp_logout_url( get_permalink() ) .'">Log Out</a></li>';
-			} else {
-				$items .= '<li class="drmc-highlight-menu"><a href="'. wp_login_url( get_permalink() ) .'">Log In</a></li>';
-			}
-		}
-
-		return $items;
-	}
-	
 } //end class DRMC_Med_Staff_Public

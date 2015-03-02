@@ -1,12 +1,14 @@
 <?php
 
-add_filter( 'user_contactmethods', 'DRMC_Med_Staff_Admin::remove_contactmethods', 100 );
+namespace Fragen\DRMC;
+
+add_filter( 'user_contactmethods', 'Fragen\DRMC\Admin::remove_contactmethods', 100 );
 
 //add columns to User panel list page
-add_action( 'manage_users_custom_column', 'DRMC_Med_Staff_Admin::add_custom_user_columns', 15, 3 );
-add_filter( 'manage_users_columns', 'DRMC_Med_Staff_Admin::add_user_columns', 15, 1 );
+add_action( 'manage_users_custom_column', 'Fragen\DRMC\Admin::add_custom_user_columns', 15, 3 );
+add_filter( 'manage_users_columns', 'Fragen\DRMC\Admin::add_user_columns', 15, 1 );
 
-class DRMC_Med_Staff_Admin {
+class Admin {
 
 	public function __construct() {
 		
@@ -18,8 +20,8 @@ class DRMC_Med_Staff_Admin {
 		// Save data input from custom field on profile page
 		add_action( 'personal_options_update', array( $this, 'wpq_save_extra_profile_fields' ) );
 		add_action( 'edit_user_profile_update', array( $this, 'wpq_save_extra_profile_fields' ) );
-		add_action( 'admin_print_scripts-profile.php', array( $this, 'hideAdminBar' ) );
-		add_action( 'admin_print_styles-user-edit.php', array( $this, 'hideAdminBar' ) );
+		add_action( 'admin_print_scripts-profile.php', array( $this, 'hide_admin_items' ) );
+		add_action( 'admin_print_styles-user-edit.php', array( $this, 'hide_admin_items' ) );
 		
 		add_action( 'admin_menu', array( $this, 'edit_admin_menus' ) );
 
@@ -42,15 +44,13 @@ class DRMC_Med_Staff_Admin {
 
 
 	public static function wpq_show_extra_profile_fields( $user ) {
-		$drmcmedstaff = DRMC_Med_Staff::instance();
-
 		?>
 			<h3><?php _e( 'Extra Profile Info'); ?></h3>
 			<table class="form-table">
 				<tr>
 					<th><label for="drmc_department" id="drmc_department"><?php _e( 'Department' ); ?></label></th>
 					<td>
-						<?php $drmcmedstaff::make_dropdown( $user ); ?>
+						<?php Base::make_dropdown( $user ); ?>
 					</td>
 				</tr>
 			</table>
@@ -68,17 +68,20 @@ class DRMC_Med_Staff_Admin {
 	//http://wordpress.org/support/topic/make-extra-columns-in-userphp-sortable?replies=17#post-2317114
 	public function add_user_columns( $defaults ) {
 		$defaults['drmc_department'] = 'Department';
+
 		return $defaults;
 	}
 
 	public static function add_custom_user_columns( $value, $column_name, $id ) {
-		if ( 'drmc_department' == $column_name )
+		if ( 'drmc_department' == $column_name ){
 			return get_the_author_meta( 'drmc_department', $id );
+		}
 	}
 	
 	//hide toolbar option in profile - http://digwp.com/2011/04/admin-bar-tricks/
-	public static function hideAdminBar() { ?>
+	public static function hide_admin_items() { ?>
 		<style type="text/css">.show-admin-bar { display: none; }</style>
+		<style type="text/css">input#eddc_user_paypal.regular-text, input#eddc_user_rate.small-text { display: none; }</style>
 	<?php }
 
 	public static function edit_admin_menus() {
