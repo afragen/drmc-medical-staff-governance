@@ -1,13 +1,18 @@
 <?php
+
+namespace Fragen\DRMC;
+
 //DRMC Medical Staff Governance
-class DRMC_Med_Staff {
+class Base {
 
 	static $depts;
 	protected static $object = false;
 	
 	public static function instance() {
 		$class = __CLASS__;
-		if ( false === self::$object ) { self::$object = new $class(); }
+		if ( false === self::$object ) {
+			self::$object = new $class();
+		}
 		return self::$object;
 	}
 	
@@ -33,19 +38,21 @@ class DRMC_Med_Staff {
 	}
 	
 	protected function load_admin() {
-		require_once DRMC_CLASSES . '/class-admin.php';
-		new DRMC_Med_Staff_Admin( $this );
+		new Admin( $this );
 	}
 
 	protected function load_public() {
-		require_once DRMC_CLASSES . '/class-public.php';
-		new DRMC_Med_Staff_Public( $this );
+		new Frontend( $this );
 	}
 
 	public static function make_dropdown( $user ) {
 		$value = get_user_meta( $user->ID, 'drmc_department' );
-		if ( ! $_POST ) { $_POST['drmc_department'] = array( 0 => '' ); }
-		if ( ! $value ) { $value = $_POST['drmc_department']; }
+		if ( ! $_POST ) {
+			$_POST['drmc_department'] = array( 0 => '' );
+		}
+		if ( ! $value ) {
+			$value = $_POST['drmc_department'];
+		}
 		$dropdown   = array();
 		$dropdown[] = '<select name="drmc_department" id="drmc_department">';
 		foreach ( self::$depts as $dept => $tax ) {
@@ -58,25 +65,29 @@ class DRMC_Med_Staff {
 	}
 
 	
-	public function get_department() {
+	public static function get_department() {
 		global $current_user;
 		get_currentuserinfo();
 		$user_dept = get_user_meta( $current_user->ID, 'drmc_department' );
+
 		return $user_dept;
 	}
 	
 	//http://nathany.com/redirecting-wordpress-subscribers
 	public function change_login_redirect( $redirect_to, $request_redirect_to, $user ) {
-		if ( is_a( $user, 'WP_User' ) && false === $user->has_cap( 'add_users' ) ) {
+		if ( $user instanceof \WP_User && false === $user->has_cap( 'add_users' ) ) {
 			return get_bloginfo( 'siteurl' );
 		}
+
 		return $redirect_to;
 	}
 
 	//http://digwp.com/2011/04/admin-bar-tricks/
 	public function hide_toolbar() {
 		// show admin bar only for admins
-		if( ! current_user_can( 'manage_options' ) ) { add_filter( 'show_admin_bar', '__return_false' ); }
+		if ( ! current_user_can( 'manage_options' ) ) {
+			add_filter( 'show_admin_bar', '__return_false' );
+		}
 
 		// show admin bar only for admins and editors
 		//if( ! current_user_can( 'edit_posts' ) ) { add_filter( 'show_admin_bar', '__return_false' ); }
