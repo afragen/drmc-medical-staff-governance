@@ -8,8 +8,8 @@
 * removed `extract()`
 * added `register_activation_hook` to create Voting/Non-Voting roles
 * add 'can_vote' to admin user.
-* add automatic 'Log In'/'Log Out' menu
 * refactor to PSR 4
+* add hooks to WP-Polls to remove names from casted ballots
 
 #### 1.9.0
 * remove a few more admin menu items

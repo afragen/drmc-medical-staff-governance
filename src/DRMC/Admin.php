@@ -73,7 +73,7 @@ class Admin {
 	}
 
 	public static function add_custom_user_columns( $value, $column_name, $id ) {
-		if ( 'drmc_department' == $column_name ){
+		if ( 'drmc_department' == $column_name ) {
 			return get_the_author_meta( 'drmc_department', $id );
 		}
 	}
