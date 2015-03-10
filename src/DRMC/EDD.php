@@ -8,6 +8,14 @@ add_filter( 'edd_payment_meta', 'Fragen\DRMC\EDD::pippin_edd_store_custom_fields
 add_action( 'edd_payment_personal_details_list', 'Fragen\DRMC\EDD::pippin_edd_purchase_details', 10, 2);
 add_filter( 'edd_sale_notification', 'Fragen\DRMC\EDD::pippin_edd_sale_notification', 10, 3 );
 add_filter( 'edd_download_supports', 'Fragen\DRMC\EDD::pw_edd_add_author_support');
+add_filter( 'edd_purchase_form_required_fields', 'Fragen\DRMC\EDD::sumobi_edd_required_checkout_fields' );
+
+/**
+ * Add a {memo} tag for use in either the purchase receipt email or admin notification emails
+ */
+if ( function_exists( 'edd_add_email_tag' ) ) {
+	edd_add_email_tag( 'memo', 'Purchase memo', 'Fragen\DRMC\EDD::sumobi_edd_email_tag_memo' );
+}
 
 
 class EDD {
@@ -43,7 +51,11 @@ class EDD {
 	public static function pippin_edd_purchase_details( $payment_meta, $user_info ) {
 		$memo = isset( $payment_meta['memo'] ) ? $payment_meta['memo'] : 'none';
 		?>
-			<li><?php echo __('Memo:', 'drmc') . ' ' . $memo; ?></li>
+		<div class="column-container">
+			<div class="column">
+				<li><?php echo __('Memo:', 'drmc') . ' ' . $memo; ?></li>
+			</div>
+		</div>
 		<?php
 	}
 
@@ -65,6 +77,29 @@ class EDD {
 		$supports[] = 'author';
 
 		return $supports;	
+	}
+
+	/**
+	 * The {memo} email tag
+	 */
+	public static function sumobi_edd_email_tag_memo( $payment_id ) {
+		$payment_data = edd_get_payment_meta( $payment_id );
+		return $payment_data['memo'];
+	}
+
+	/**
+	 * Make memo required
+	 * Add more required fields here if you need to
+	 */
+	public static function sumobi_edd_required_checkout_fields( $required_fields ) {
+		$required_fields = array(
+			'drmc_memo' => array(
+				'error_id' => 'invalid_memo',
+				'error_message' => 'Please enter a purchase memo'
+			),
+		);
+
+		return $required_fields;
 	}
 
 }
