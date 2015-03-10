@@ -3,7 +3,7 @@
 Plugin Name:       DRMC Medical Staff Governance
 Plugin URI:        https://github.com/afragen/drmc-medical-staff-governance
 Description:       This plugin adds registration, custom user meta and other things to the DRMC Medical Staff website for web-based governance.
-Version:           1.9.13
+Version:           1.9.14
 Author:            Andy Fragen
 License:           GNU General Public License v2
 License URI:       http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
