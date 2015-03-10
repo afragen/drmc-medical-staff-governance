@@ -2,25 +2,25 @@
 
 namespace Fragen\DRMC;
 
-add_filter( 'edd_downloads_query', 'Fragen\DRMC\EDD::sumobi_edd_downloads_query', 10, 2 );
-add_action( 'edd_purchase_form_user_info', 'Fragen\DRMC\EDD::pippin_edd_custom_checkout_fields');
-add_filter( 'edd_payment_meta', 'Fragen\DRMC\EDD::pippin_edd_store_custom_fields');
-add_action( 'edd_payment_personal_details_list', 'Fragen\DRMC\EDD::pippin_edd_purchase_details', 10, 2);
-add_filter( 'edd_sale_notification', 'Fragen\DRMC\EDD::pippin_edd_sale_notification', 10, 3 );
-add_filter( 'edd_download_supports', 'Fragen\DRMC\EDD::pw_edd_add_author_support');
-add_filter( 'edd_purchase_form_required_fields', 'Fragen\DRMC\EDD::sumobi_edd_required_checkout_fields' );
+add_filter( 'edd_downloads_query', 'Fragen\DRMC\EDD::edd_downloads_query', 10, 2 );
+add_action( 'edd_purchase_form_user_info', 'Fragen\DRMC\EDD::edd_custom_checkout_fields');
+add_filter( 'edd_payment_meta', 'Fragen\DRMC\EDD::edd_store_custom_fields', 10, 1 );
+add_action( 'edd_payment_personal_details_list', 'Fragen\DRMC\EDD::edd_purchase_details', 10, 2);
+add_filter( 'edd_sale_notification', 'Fragen\DRMC\EDD::edd_sale_notification', 10, 3 );
+add_filter( 'edd_download_supports', 'Fragen\DRMC\EDD::edd_add_author_support', 10, 1 );
+add_filter( 'edd_purchase_form_required_fields', 'Fragen\DRMC\EDD::edd_required_checkout_fields', 10, 1 );
 
 /**
  * Add a {memo} tag for use in either the purchase receipt email or admin notification emails
  */
 if ( function_exists( 'edd_add_email_tag' ) ) {
-	edd_add_email_tag( 'memo', 'Purchase memo', 'Fragen\DRMC\EDD::sumobi_edd_email_tag_memo' );
+	edd_add_email_tag( 'memo', 'Purchase memo', 'Fragen\DRMC\EDD::edd_email_tag_memo' );
 }
 
 
 class EDD {
 
-	public static function sumobi_edd_downloads_query( $query, $atts ) {
+	public static function edd_downloads_query( $query, $atts ) {
 		global $wp_query;
 
 		if ( 'cme-symposia-tickets' === $wp_query->query_vars['pagename'] ) {
@@ -31,7 +31,7 @@ class EDD {
 	}
 
 	// output our custom field HTML
-	public static function pippin_edd_custom_checkout_fields() {
+	public static function edd_custom_checkout_fields() {
 		?>
 		<p>
 			<label class="edd-label" for="drmc-memo"><?php _e('Memo', 'drmc'); ?></label>
@@ -41,14 +41,14 @@ class EDD {
 	}
 
 	// store the custom field data in the payment meta
-	public static function pippin_edd_store_custom_fields( $payment_meta ) {
+	public static function edd_store_custom_fields( $payment_meta ) {
 		$payment_meta['memo'] = isset( $_POST['drmc_memo'] ) ? sanitize_text_field( $_POST['drmc_memo'] ) : '';
 
 		return $payment_meta;
 	}
 
 	// show the custom fields in the "View Order Details" popup
-	public static function pippin_edd_purchase_details( $payment_meta, $user_info ) {
+	public static function edd_purchase_details( $payment_meta, $user_info ) {
 		$memo = isset( $payment_meta['memo'] ) ? $payment_meta['memo'] : 'none';
 		?>
 		<div class="column-container">
@@ -59,7 +59,7 @@ class EDD {
 		<?php
 	}
 
-	public static function pippin_edd_sale_notification( $email_body, $payment_id, $payment_data ) {
+	public static function edd_sale_notification( $email_body, $payment_id, $payment_data ) {
 		// retrieve payment meta array and unserialize it
 		$payment_meta = maybe_unserialize( get_post_meta( $payment_id, '_edd_payment_meta', true ) );
 
@@ -73,7 +73,7 @@ class EDD {
 		return $email_body;
 	}
 
-	public static function pw_edd_add_author_support( $supports ) {
+	public static function edd_add_author_support( $supports ) {
 		$supports[] = 'author';
 
 		return $supports;	
@@ -82,7 +82,7 @@ class EDD {
 	/**
 	 * The {memo} email tag
 	 */
-	public static function sumobi_edd_email_tag_memo( $payment_id ) {
+	public static function edd_email_tag_memo( $payment_id ) {
 		$payment_data = edd_get_payment_meta( $payment_id );
 		return $payment_data['memo'];
 	}
@@ -91,7 +91,7 @@ class EDD {
 	 * Make memo required
 	 * Add more required fields here if you need to
 	 */
-	public static function sumobi_edd_required_checkout_fields( $required_fields ) {
+	public static function edd_required_checkout_fields( $required_fields ) {
 		$required_fields = array(
 			'drmc_memo' => array(
 				'error_id' => 'invalid_memo',
