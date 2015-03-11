@@ -1,10 +1,3 @@
-/* Highlight Voting menu */
-li.drmc-highlight-menu > a,
-li.drmc-highlight-menu > a:hover,
-.main-navigation li.drmc-highlight-menu.current-menu-ancestor > a {
-	color: #f00;
-}
-
 /* hide immediate poll results */
 .wp-polls .wp-polls-ans .wp-polls-ul { display:none; }
 /* show polls not yet voted upon */

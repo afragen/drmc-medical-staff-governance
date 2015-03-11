@@ -34,15 +34,16 @@ class Base {
 		add_action( 'init', array( $this, 'create_post_type' ) );
 		add_action( 'plugins_loaded', array( $this, 'hide_toolbar' ) );
 
-		is_admin() ? $this->load_admin() : $this->load_public();
+		is_admin() ? new Admin( $this ) : new Frontend( $this );
+		new EDD;
 	}
 	
 	protected function load_admin() {
-		new Admin( $this );
+		//new Admin( $this );
 	}
 
 	protected function load_public() {
-		new Frontend( $this );
+		//new Frontend( $this );
 	}
 
 	public static function make_dropdown( $user ) {
