@@ -53,7 +53,7 @@ class EDD {
 		?>
 		<div class="column-container">
 			<div class="column">
-				<li><?php echo __('Memo:', 'drmc') . ' ' . $memo; ?></li>
+				<strong><?php echo __('Memo:', 'drmc'); ?></strong>&nbsp;<?php echo $memo; ?>
 			</div>
 		</div>
 		<?php

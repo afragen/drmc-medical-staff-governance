@@ -76,7 +76,6 @@ class Frontend {
 	}
 
 	public static function add_css() {
-		$_1 = plugins_url( 'includes/drmc.css', dirname( dirname( __FILE__ ) ) );
 		wp_enqueue_style( 'drmc' , plugins_url( 'includes/drmc.css', dirname( dirname( __FILE__ ) ) ) );
 	}
 

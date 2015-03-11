@@ -37,14 +37,6 @@ class Base {
 		is_admin() ? new Admin( $this ) : new Frontend( $this );
 		new EDD;
 	}
-	
-	protected function load_admin() {
-		//new Admin( $this );
-	}
-
-	protected function load_public() {
-		//new Frontend( $this );
-	}
 
 	public static function make_dropdown( $user ) {
 		$value = get_user_meta( $user->ID, 'drmc_department' );
