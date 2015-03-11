@@ -35,6 +35,8 @@ class Base {
 		add_action( 'plugins_loaded', array( $this, 'hide_toolbar' ) );
 
 		is_admin() ? new Admin( $this ) : new Frontend( $this );
+
+		//instantiate EDD class
 		new EDD;
 	}
 
