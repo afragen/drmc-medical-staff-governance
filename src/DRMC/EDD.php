@@ -2,19 +2,19 @@
 
 namespace Fragen\DRMC;
 
-add_filter( 'edd_downloads_query', 'Fragen\DRMC\EDD::edd_downloads_query', 10, 2 );
-add_action( 'edd_purchase_form_user_info', 'Fragen\DRMC\EDD::edd_custom_checkout_fields');
-add_filter( 'edd_payment_meta', 'Fragen\DRMC\EDD::edd_store_custom_fields', 10, 1 );
-add_action( 'edd_payment_personal_details_list', 'Fragen\DRMC\EDD::edd_purchase_details', 10, 2);
-add_filter( 'edd_sale_notification', 'Fragen\DRMC\EDD::edd_sale_notification', 10, 3 );
-add_filter( 'edd_download_supports', 'Fragen\DRMC\EDD::edd_add_author_support', 10, 1 );
-add_filter( 'edd_purchase_form_required_fields', 'Fragen\DRMC\EDD::edd_required_checkout_fields', 10, 1 );
+add_filter( 'edd_downloads_query', 'Fragen\\DRMC\\EDD::edd_downloads_query', 10, 2 );
+add_action( 'edd_purchase_form_user_info', 'Fragen\\DRMC\\EDD::edd_custom_checkout_fields');
+add_filter( 'edd_payment_meta', 'Fragen\\DRMC\\EDD::edd_store_custom_fields', 10, 1 );
+add_action( 'edd_payment_personal_details_list', 'Fragen\\DRMC\\EDD::edd_purchase_details', 10, 2);
+add_filter( 'edd_sale_notification', 'Fragen\\DRMC\\EDD::edd_sale_notification', 10, 3 );
+add_filter( 'edd_download_supports', 'Fragen\\DRMC\\EDD::edd_add_author_support', 10, 1 );
+add_filter( 'edd_purchase_form_required_fields', 'Fragen\\DRMC\\EDD::edd_required_checkout_fields', 10, 1 );
 
 /**
  * Add a {memo} tag for use in either the purchase receipt email or admin notification emails
  */
 if ( function_exists( 'edd_add_email_tag' ) ) {
-	edd_add_email_tag( 'memo', 'Purchase memo', 'Fragen\DRMC\EDD::edd_email_tag_memo' );
+	edd_add_email_tag( 'memo', 'Purchase memo', 'Fragen\\DRMC\\EDD::edd_email_tag_memo' );
 }
 
 
@@ -76,7 +76,7 @@ class EDD {
 	public static function edd_add_author_support( $supports ) {
 		$supports[] = 'author';
 
-		return $supports;	
+		return $supports;
 	}
 
 	/**
@@ -95,7 +95,7 @@ class EDD {
 		$required_fields = array(
 			'drmc_memo' => array(
 				'error_id' => 'invalid_memo',
-				'error_message' => 'Please enter a purchase memo'
+				'error_message' => 'Please enter a purchase memo',
 			),
 		);
 
