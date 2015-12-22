@@ -14,14 +14,14 @@ class Admin {
 
 		// Add additional custom fields to profile page
 		// http://pastebin.com/0zhWAtqY
-		add_action ( 'show_user_profile', array( $this, 'wpq_show_extra_profile_fields' ) );
-		add_action ( 'edit_user_profile', array( $this, 'wpq_show_extra_profile_fields' ) );
+		add_action ( 'show_user_profile', array( &$this, 'wpq_show_extra_profile_fields' ) );
+		add_action ( 'edit_user_profile', array( &$this, 'wpq_show_extra_profile_fields' ) );
 
 		// Save data input from custom field on profile page
-		add_action( 'personal_options_update', array( $this, 'wpq_save_extra_profile_fields' ) );
-		add_action( 'edit_user_profile_update', array( $this, 'wpq_save_extra_profile_fields' ) );
-		add_action( 'admin_print_scripts-profile.php', array( $this, 'hide_admin_items' ) );
-		add_action( 'admin_print_styles-user-edit.php', array( $this, 'hide_admin_items' ) );
+		add_action( 'personal_options_update', array( &$this, 'wpq_save_extra_profile_fields' ) );
+		add_action( 'edit_user_profile_update', array( &$this, 'wpq_save_extra_profile_fields' ) );
+		add_action( 'admin_print_scripts-profile.php', array( &$this, 'hide_admin_items' ) );
+		add_action( 'admin_print_styles-user-edit.php', array( &$this, 'hide_admin_items' ) );
 
 		add_action( 'admin_menu', array( $this, 'edit_admin_menus' ) );
 

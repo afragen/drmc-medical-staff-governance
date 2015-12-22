@@ -6,12 +6,15 @@ class Frontend {
 
 	public function __construct() {
 		//Add custom fields to registration page
-		add_action( 'register_form', array( $this, 'drmc_username' ) );
-		add_action( 'register_form', array( $this, 'drmc_add_dropdown' ) );
-		add_action( 'register_form', array( $this, 'drmc_add_warning' ) );
-		add_action( 'register_post', array( $this, 'drmc_registration_errors' ), 10, 3 );
-		add_action( 'user_register', array( $this, 'drmc_register_extra_fields' ) );
-		add_action( 'wp_enqueue_scripts', array( $this, 'add_css'), 99 );
+		add_action( 'register_form', array( &$this, 'drmc_username' ) );
+		add_action( 'register_form', array( &$this, 'drmc_add_dropdown' ) );
+		add_action( 'register_form', array( &$this, 'drmc_add_warning' ) );
+		add_action( 'register_post', array( &$this, 'drmc_registration_errors' ), 10, 3 );
+		add_action( 'user_register', array( &$this, 'drmc_register_extra_fields' ) );
+		add_action( 'wp_enqueue_scripts', array( &$this, 'add_css'), 99 );
+		add_filter( 'wp_nav_menu_items', array( &$this, 'menu_login_logout_link' ), 10, 2);
+	}
+
 	}
 
 	public function drmc_username() {
@@ -48,7 +51,7 @@ class Frontend {
 						)
 					);
 	}
-	
+
 	private function ucname( $string ) {
 		$string = ucwords( strtolower( $string ) );
 		foreach ( array( '-', '\'' ) as $delimiter ) {
@@ -58,7 +61,7 @@ class Frontend {
 		}
 		return $string;
 	}
-	
+
 	public function drmc_registration_errors( $sanitized_user_login, $user_email, $errors  ) {
 		if ( preg_match( '/[^-\.\w]/', $sanitized_user_login ) ) {
 			$errors->add( 'user_name', '<strong>ERROR</strong>: Your username contains one or more invalid characters. Please use your DRMC username.' );

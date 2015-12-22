@@ -7,7 +7,7 @@ class Base {
 
 	static $depts;
 	protected static $object = false;
-	
+
 	public static function instance() {
 		$class = __CLASS__;
 		if ( false === self::$object ) {
@@ -15,9 +15,9 @@ class Base {
 		}
 		return self::$object;
 	}
-	
+
 	public function __construct() {
-			
+
 		self::$depts = array(
 			'--' => '',
 			'Emergency Medicine'    => 'emergency-medicine',
@@ -27,8 +27,8 @@ class Base {
 			'Obstetrics/Gynecology' => 'obstetrics-gynecology',
 			'Radiology'             => 'radiology',
 			'Surgery'               => 'surgery'
-			);	
-								
+			);
+
 		add_filter( 'login_redirect', array( $this, 'change_login_redirect' ), 10, 3);
 		add_action( 'init', array( $this, 'add_custom_taxonomies' ), 0 );
 		add_action( 'init', array( $this, 'create_post_type' ) );
@@ -59,7 +59,7 @@ class Base {
 		echo $content;
 	}
 
-	
+
 	public static function get_department() {
 		global $current_user;
 		get_currentuserinfo();
@@ -67,7 +67,7 @@ class Base {
 
 		return $user_dept;
 	}
-	
+
 	//http://nathany.com/redirecting-wordpress-subscribers
 	public function change_login_redirect( $redirect_to, $request_redirect_to, $user ) {
 		if ( $user instanceof \WP_User && false === $user->has_cap( 'add_users' ) ) {
@@ -124,12 +124,12 @@ class Base {
 			),
 		));
 	}
-	
+
 	public function create_post_type() {
 		register_post_type( 'drmc_voting',
 			array(
-				'labels' => array(  
-					'name'          => __( 'Elections' ),  
+				'labels' => array(
+					'name'          => __( 'Elections' ),
 					'singular_name' => __( 'Election' )
 				),
 			'public'        => true,
@@ -137,7 +137,7 @@ class Base {
 			'menu_icon'     => 'dashicons-chart-bar',
 			'rewrite'       => array( 'slug' => 'elections' ),
 			'taxonomies'    => array( 'department' ),
-			'supports'      => array( 'title', 'editor', 'comments', 'post-formats' ) 
+			'supports'      => array( 'title', 'editor', 'comments', 'post-formats' )
 			)
 		);
 	}
