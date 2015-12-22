@@ -81,7 +81,7 @@ class Base {
 	public function hide_toolbar() {
 		// show admin bar only for admins
 		if ( ! current_user_can( 'manage_options' ) ) {
-			add_filter( 'show_admin_bar', '__return_false' );
+			//add_filter( 'show_admin_bar', '__return_false' );
 		}
 
 		// show admin bar only for admins and editors
