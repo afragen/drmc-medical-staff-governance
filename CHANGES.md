@@ -11,6 +11,7 @@
 * refactor to PSR 4
 * add hooks to WP-Polls to remove names from casted ballots
 * add memo field to EDD emails
+* add automatic login/logout menu
 
 #### 1.9.0
 * remove a few more admin menu items

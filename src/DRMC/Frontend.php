@@ -15,6 +15,14 @@ class Frontend {
 		add_filter( 'wp_nav_menu_items', array( &$this, 'menu_login_logout_link' ), 10, 2);
 	}
 
+	public function menu_login_logout_link( $nav, $args ) {
+		$logoutlink = '<li><a href="' . wp_logout_url() . '">Logout</a></li>';
+		$loginlink  = '<li class="drmc-highlight-menu"><a href="' . wp_login_url() . '">Login</a></li>';
+		if ( is_user_logged_in() ) {
+			return $nav . $logoutlink;
+		} else {
+			return $nav . $loginlink;
+		}
 	}
 
 	public function drmc_username() {
