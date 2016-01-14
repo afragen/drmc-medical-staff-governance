@@ -37,7 +37,7 @@ function drmc_voting_check_shortcode( $attr, $content = null ) {
 	if ( current_user_can( $atts['capability'] ) && ! is_null( $content ) && ! is_feed() ) {
 		return do_shortcode( $content );
 	}
-	return '<p>Either you do not have sufficient privileges or you need to login to vote.</p>';
+	return '<div class="drmc_vote_message">Either you do not have sufficient privileges or you need to login to vote.</div>';
 }
 
 // secret ballots in wp-polls

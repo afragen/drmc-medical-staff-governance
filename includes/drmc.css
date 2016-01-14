@@ -4,3 +4,8 @@
 .wp-polls form.wp-polls-form .wp-polls-ans .wp-polls-ul { display:block; }
 /* show pollsarchive */
 .wp-polls.wp-polls-archive .wp-polls-ans .wp-polls-ul { display:block; }
+
+.drmc_vote_message {
+	font-style: italic;
+	padding: 0 2em;
+}
