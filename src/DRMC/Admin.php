@@ -79,12 +79,18 @@ class Admin {
 	}
 
 	//hide toolbar option in profile - http://digwp.com/2011/04/admin-bar-tricks/
-	public static function hide_admin_items() { ?>
-		<style type="text/css">
-			.show-admin-bar { display: none; }
-			input#eddc_user_paypal.regular-text, input#eddc_user_rate.small-text { display: none; }
-		</style>
-	<?php }
+	public static function hide_admin_items() {
+		if ( ! current_user_can( 'add_users' ) ) {
+			?>
+			<style type="text/css">
+				.show-admin-bar { display: none; }
+				input#eddc_user_paypal.regular-text, input#eddc_user_rate.small-text { display: none; }
+				input[id*="email_users_accept_"] { display: none; }
+				tr.user-nickname-wrap { display: none; }
+			</style>
+			<?php
+		}
+	}
 
 	public static function edit_admin_menus() {
 		remove_menu_page( 'link-manager.php' );

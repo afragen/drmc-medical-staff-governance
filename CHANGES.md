@@ -12,6 +12,7 @@
 * add hooks to WP-Polls to remove names from casted ballots
 * add memo field to EDD emails
 * add automatic login/logout menu
+* hide stuff from non-admin users on profile page
 
 #### 1.9.0
 * remove a few more admin menu items
