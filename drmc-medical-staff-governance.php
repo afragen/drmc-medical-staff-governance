@@ -30,15 +30,6 @@ $dmrc = call_user_func( $launch_method );
 
 register_activation_hook( __FILE__, array( 'Fragen\\DRMC\\Base', 'activate' ) );
 
-// add shortcode for [voting]
-add_shortcode( 'voting', 'drmc_voting_check_shortcode' );
-function drmc_voting_check_shortcode( $attr, $content = null ) {
-	$atts = shortcode_atts( array( 'capability' => 'can_vote' ), $attr, 'voting' );
-	if ( current_user_can( $atts['capability'] ) && ! is_null( $content ) && ! is_feed() ) {
-		return do_shortcode( $content );
-	}
-	return '<div class="drmc_vote_message">Either you do not have sufficient privileges or you need to login to vote.</div>';
-}
 
 // secret ballots in wp-polls
 add_filter( 'poll_log_show_log_filter', '__return_false' );

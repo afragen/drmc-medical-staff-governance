@@ -162,8 +162,19 @@ class Base {
 		$role->add_cap( 'can_vote' );
 	}
 
+	public function add_voting_shortcode() {
+		// add shortcode for [voting]
+		add_shortcode( 'voting', array( $this, 'can_vote' ) );
 	}
 
+	public function can_vote( $attr, $content = null ) {
+		$atts = shortcode_atts( array( 'capability' => 'can_vote' ), $attr, 'voting' );
+		if ( current_user_can( $atts['capability'] ) && ! is_null( $content ) && ! is_feed() ) {
+			return do_shortcode( $content );
+		}
+
+		return '<div class="drmc_vote_message">Either you do not have sufficient privileges or you need to login to vote.</div>';
+	}
 	
 	public function activate() {
 		$this->add_user_roles();
