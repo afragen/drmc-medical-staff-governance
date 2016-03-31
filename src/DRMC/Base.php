@@ -38,7 +38,7 @@ class Base {
 		// add shortcode for [voting]
 		add_shortcode( 'voting', array( &$this, 'can_vote' ) );
 
-		is_admin() ? new Admin( &$this ) : new Frontend( &$this );
+		is_admin() ? new Admin( $this ) : new Frontend( $this );
 
 		//instantiate EDD class
 		new EDD();
