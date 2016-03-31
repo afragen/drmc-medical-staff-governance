@@ -62,7 +62,7 @@ class Base {
 
 	public static function get_department() {
 		global $current_user;
-		get_currentuserinfo();
+		wp_get_current_user();
 		$user_dept = get_user_meta( $current_user->ID, 'drmc_department' );
 
 		return $user_dept;
