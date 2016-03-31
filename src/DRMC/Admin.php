@@ -2,11 +2,6 @@
 
 namespace Fragen\DRMC;
 
-add_filter( 'user_contactmethods', 'Fragen\\DRMC\\Admin::remove_contactmethods', 100 );
-
-//add columns to User panel list page
-add_action( 'manage_users_custom_column', 'Fragen\\DRMC\\Admin::add_custom_user_columns', 15, 3 );
-add_filter( 'manage_users_columns', 'Fragen\\DRMC\\Admin::add_user_columns', 15, 1 );
 
 class Admin {
 
@@ -28,7 +23,7 @@ class Admin {
 }
 
 
-	public static function remove_contactmethods( $user_contactmethods ) {
+	public function remove_contactmethods( $user_contactmethods ) {
 		// You can get rid of ones you don't want
 		unset( $user_contactmethods['jabber'] );
 		unset( $user_contactmethods['yim'] );
@@ -43,7 +38,7 @@ class Admin {
 	}
 
 
-	public static function wpq_show_extra_profile_fields( $user ) {
+	public function wpq_show_extra_profile_fields( $user ) {
 		?>
 			<h3><?php _e( 'Extra Profile Info'); ?></h3>
 			<table class="form-table">
@@ -58,8 +53,8 @@ class Admin {
 	}
 
 
-	public static function wpq_save_extra_profile_fields( $user_id ) {
 		if ( ! current_user_can( 'add_users' ) ) { return false; }
+	public function wpq_save_extra_profile_fields( $user_id ) {
 
 		// copy this line for other fields
 		update_user_meta( $user_id, 'drmc_department', $_POST['drmc_department'] );
@@ -72,14 +67,14 @@ class Admin {
 		return $defaults;
 	}
 
-	public static function add_custom_user_columns( $value, $column_name, $id ) {
+	public function add_custom_user_columns( $value, $column_name, $id ) {
 		if ( 'drmc_department' == $column_name ) {
 			return get_the_author_meta( 'drmc_department', $id );
 		}
 	}
 
 	//hide toolbar option in profile - http://digwp.com/2011/04/admin-bar-tricks/
-	public static function hide_admin_items() {
+	public function hide_admin_items() {
 		if ( ! current_user_can( 'add_users' ) ) {
 			?>
 			<style type="text/css">
@@ -92,7 +87,7 @@ class Admin {
 		}
 	}
 
-	public static function edit_admin_menus() {
+	public function edit_admin_menus() {
 		remove_menu_page( 'link-manager.php' );
 		if ( ! current_user_can( 'add_users' ) ) {
 			remove_menu_page( 'tools.php' );

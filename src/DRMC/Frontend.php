@@ -36,7 +36,7 @@ class Frontend {
 	}
 
 	public function drmc_add_dropdown( $user ) {
-		Base::make_dropdown( $user );
+		Base::instance()->make_dropdown( $user );
 	}
 
 	public function drmc_add_warning() {

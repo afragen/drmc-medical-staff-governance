@@ -162,9 +162,13 @@ class Base {
 		$role->add_cap( 'can_vote' );
 	}
 
-	public static function activate() {
-		self::add_user_roles();
-		self::add_admin_voting();
 	}
 
+	
+	public function activate() {
+		$this->add_user_roles();
+		$this->add_admin_voting();
+		$this->add_voting_shortcode();
+	}
+	
 } //end class DRMC_Med_Staff
