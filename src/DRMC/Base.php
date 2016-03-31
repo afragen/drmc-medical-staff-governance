@@ -35,6 +35,9 @@ class Base {
 		add_action( 'init', array( &$this, 'create_post_type' ) );
 		add_action( 'plugins_loaded', array( &$this, 'hide_toolbar' ) );
 
+		// add shortcode for [voting]
+		add_shortcode( 'voting', array( &$this, 'can_vote' ) );
+
 		is_admin() ? new Admin( &$this ) : new Frontend( &$this );
 
 		//instantiate EDD class
@@ -169,11 +172,6 @@ class Base {
 		$role->add_cap( 'can_vote' );
 	}
 
-	public function add_voting_shortcode() {
-		// add shortcode for [voting]
-		add_shortcode( 'voting', array( $this, 'can_vote' ) );
-	}
-
 	public function can_vote( $attr, $content = null ) {
 		$atts = shortcode_atts( array( 'capability' => 'can_vote' ), $attr, 'voting' );
 		if ( current_user_can( $atts['capability'] ) && ! is_null( $content ) && ! is_feed() ) {
@@ -182,11 +180,10 @@ class Base {
 
 		return '<div class="drmc_vote_message">Either you do not have sufficient privileges or you need to login to vote.</div>';
 	}
-	
+
 	public function activate() {
 		$this->add_user_roles();
 		$this->add_admin_voting();
-		$this->add_voting_shortcode();
 	}
-	
+
 } //end class DRMC_Med_Staff

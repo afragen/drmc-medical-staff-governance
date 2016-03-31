@@ -30,7 +30,6 @@ $drmc          = call_user_func( $launch_method );
 
 register_activation_hook( __FILE__, array( $drmc, 'activate' ) );
 
-
 // secret ballots in wp-polls
 add_filter( 'poll_log_show_log_filter', '__return_false' );
 add_filter( 'poll_log_secret_ballot', '__return_empty_string' );
