@@ -38,8 +38,8 @@ class EDD {
 	public function edd_custom_checkout_fields() {
 		?>
 		<p>
-			<label class="edd-label" for="drmc-memo"><?php _e('Memo', 'drmc'); ?></label>
-			<input class="edd-input required" type="text" name="drmc_memo" id="drmc-memo" placeholder="<?php _e('Memo', 'drmc'); ?>" value=""/>
+			<label class="edd-label" for="drmc-memo"><?php _e( 'Memo', 'drmc' ); ?></label>
+			<input class="edd-input required" type="text" name="drmc_memo" id="drmc-memo" placeholder="<?php _e( 'Memo', 'drmc' ); ?>" value="" />
 		</p>
 		<?php
 	}
@@ -57,7 +57,7 @@ class EDD {
 		?>
 		<div class="column-container">
 			<div class="column">
-				<strong><?php echo __('Memo:', 'drmc'); ?></strong>&nbsp;<?php echo $memo; ?>
+				<strong><?php echo __( 'Memo:', 'drmc' ); ?></strong>&nbsp;<?php echo $memo; ?>
 			</div>
 		</div>
 		<?php
@@ -88,6 +88,7 @@ class EDD {
 	 */
 	public function edd_email_tag_memo( $payment_id ) {
 		$payment_data = edd_get_payment_meta( $payment_id );
+
 		return $payment_data['memo'];
 	}
 
@@ -98,12 +99,18 @@ class EDD {
 	public function edd_required_checkout_fields( $required_fields ) {
 		$required_fields = array(
 			'drmc_memo' => array(
-				'error_id' => 'invalid_memo',
+				'error_id'      => 'invalid_memo',
 				'error_message' => 'Please enter a purchase memo',
 			),
 		);
 
 		return $required_fields;
+	}
+
+	public function edd_email_preview_template_tags( $message ) {
+		$message = str_replace( '{memo}', 'This is a purchase memo.', $message );
+
+		return $message;
 	}
 
 }

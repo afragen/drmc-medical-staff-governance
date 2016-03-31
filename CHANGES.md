@@ -6,8 +6,8 @@
 * added dashicon
 * added plugin specific CSS to load from plugin
 * removed `extract()`
-* added `register_activation_hook` to create Voting/Non-Voting roles
-* add 'can_vote' to admin user.
+* added `register_activation_hook` to create Voting/Non-Voting/Chief of Staff roles
+* add 'can_vote' to admin user and Chief of Staff role
 * refactor to PSR 4
 * add hooks to WP-Polls to remove names from casted ballots
 * add memo field to EDD emails

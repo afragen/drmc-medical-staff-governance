@@ -5,7 +5,7 @@ namespace Fragen\DRMC;
 //DRMC Medical Staff Governance
 class Base {
 
-	static $depts;
+	public static $depts;
 	protected static $object = false;
 
 	public static function instance() {
@@ -13,23 +13,24 @@ class Base {
 		if ( false === self::$object ) {
 			self::$object = new $class();
 		}
+
 		return self::$object;
 	}
 
 	public function __construct() {
 
 		self::$depts = array(
-			'--' => '',
+			'--'                    => '',
 			'Emergency Medicine'    => 'emergency-medicine',
 			'Family Medicine'       => 'family-medicine',
 			'Medicine'              => 'medicine',
 			'Pediatrics'            => 'pediatrics',
 			'Obstetrics/Gynecology' => 'obstetrics-gynecology',
 			'Radiology'             => 'radiology',
-			'Surgery'               => 'surgery'
-			);
+			'Surgery'               => 'surgery',
+		);
 
-		add_filter( 'login_redirect', array( $this, 'change_login_redirect' ), 10, 3);
+		add_filter( 'login_redirect', array( $this, 'change_login_redirect' ), 10, 3 );
 		add_action( 'init', array( $this, 'add_custom_taxonomies' ), 0 );
 		add_action( 'init', array( $this, 'create_post_type' ) );
 		add_action( 'plugins_loaded', array( $this, 'hide_toolbar' ) );
@@ -40,7 +41,7 @@ class Base {
 		new EDD;
 	}
 
-	public static function make_dropdown( $user ) {
+	public function make_dropdown( $user ) {
 		$value = get_user_meta( $user->ID, 'drmc_department' );
 		if ( ! $_POST ) {
 			$_POST['drmc_department'] = array( 0 => '' );
@@ -51,7 +52,7 @@ class Base {
 		$dropdown   = array();
 		$dropdown[] = '<select name="drmc_department" id="drmc_department">';
 		foreach ( self::$depts as $dept => $tax ) {
-			$dropdown[] = "<option value='$tax' " . selected($value[0], $tax, false) . ">$dept</option>";
+			$dropdown[] = "<option value='$tax' " . selected( $value[0], $tax, false ) . ">$dept</option>";
 			//$dropdown[] = '<option value="'. $tax . '" <' . '?php selected( $value, "' . $tax . '" ); ?' . '>>' . $dept . '</option>';
 		}
 		$dropdown[] = '</select>';
@@ -60,7 +61,7 @@ class Base {
 	}
 
 
-	public static function get_department() {
+	public function get_department() {
 		global $current_user;
 		wp_get_current_user();
 		$user_dept = get_user_meta( $current_user->ID, 'drmc_department' );
@@ -122,22 +123,22 @@ class Base {
 				'with_front'   => false, // Don't display the category base before "/locations/"
 				'hierarchical' => true // This will allow URL's like "/locations/boston/cambridge/"
 			),
-		));
+		) );
 	}
 
 	public function create_post_type() {
 		register_post_type( 'drmc_voting',
 			array(
-				'labels' => array(
+				'labels'        => array(
 					'name'          => __( 'Elections' ),
-					'singular_name' => __( 'Election' )
+					'singular_name' => __( 'Election' ),
 				),
-			'public'        => true,
-			'menu_position' => 5,
-			'menu_icon'     => 'dashicons-chart-bar',
-			'rewrite'       => array( 'slug' => 'elections' ),
-			'taxonomies'    => array( 'department' ),
-			'supports'      => array( 'title', 'editor', 'comments', 'post-formats' )
+				'public'        => true,
+				'menu_position' => 5,
+				'menu_icon'     => 'dashicons-chart-bar',
+				'rewrite'       => array( 'slug' => 'elections' ),
+				'taxonomies'    => array( 'department' ),
+				'supports'      => array( 'title', 'editor', 'comments', 'post-formats' ),
 			)
 		);
 	}
@@ -149,6 +150,7 @@ class Base {
 				'can_vote' => true,
 			)
 		);
+
 		add_role( 'non_voting_staff', 'Non-Voting Staff',
 			array(
 				'read'     => true,
