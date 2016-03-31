@@ -155,6 +155,11 @@ class Base {
 				'can_vote' => false,
 			)
 		);
+
+		$editor = get_role( 'editor' );
+		add_role( 'chief_of_staff', 'Chief of Staff', $editor->capabilities );
+		$cos = get_role( 'chief_of_staff' );
+		$cos->add_cap( 'can_vote' );
 	}
 
 	public function add_admin_voting() {
