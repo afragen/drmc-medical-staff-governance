@@ -15,6 +15,10 @@ class EDD {
 		add_filter( 'edd_purchase_form_required_fields', array( &$this, 'edd_required_checkout_fields' ), 10, 1 );
 		add_filter( 'edd_email_preview_template_tags', array( &$this, 'edd_email_preview_template_tags' ), 10, 1 );
 
+		add_action( 'init', function () {
+			remove_action( 'eddc_insert_commission', 'eddc_email_alert', 10 );
+		} );
+
 		/**
 		 * Add a {memo} tag for use in either the purchase receipt email or admin notification emails
 		 */

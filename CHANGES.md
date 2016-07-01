@@ -14,6 +14,7 @@
 * add automatic login/logout menu
 * hide stuff from non-admin users on profile page
 * improve message for non-voters
+* remove EDD Commissions email
 
 #### 1.9.0
 * remove a few more admin menu items
