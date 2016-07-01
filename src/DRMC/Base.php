@@ -62,7 +62,7 @@ class Base {
 		$content    = implode( "\n", $dropdown );
 		echo $content;
 	}
-	
+
 	public function get_department() {
 		global $current_user;
 		wp_get_current_user();

@@ -8,6 +8,7 @@ namespace Fragen\DRMC;
  * To use with different plugins be sure to create a new namespace.
  *
  * Class      Autoloader
+ *
  * @package   Fragen\GitHub_Updater
  * @author    Andy Fragen <andy@thefragens.com>
  * @author    Barry Hughes <barry@codingkillsme.com>
@@ -30,7 +31,7 @@ class Autoloader {
 	 *
 	 * @var array
 	 */
-	protected $map   = array();
+	protected $map = array();
 
 
 	/**
@@ -41,7 +42,9 @@ class Autoloader {
 	 */
 	public function __construct( array $roots, array $static_map = null ) {
 		$this->roots = $roots;
-		if ( null !== $static_map ) $this->map = $static_map;
+		if ( null !== $static_map ) {
+			$this->map = $static_map;
+		}
 		spl_autoload_register( array( $this, 'autoload' ) );
 	}
 
@@ -54,6 +57,7 @@ class Autoloader {
 		// Check for a static mapping first of all
 		if ( isset( $this->map[ $class ] ) && file_exists( $this->map[ $class ] ) ) {
 			include $this->map[ $class ];
+
 			return;
 		}
 
