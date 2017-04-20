@@ -24,7 +24,7 @@ class EDD {
 		 */
 		if ( function_exists( 'edd_add_email_tag' ) ) {
 			add_action( 'edd_add_email_tags', function() {
-				edd_add_email_tag( 'memo', 'Purchase memo', array( &$this, 'edd_email_tag_memo' ) );
+				edd_add_email_tag( 'memo', 'Purchase memo', array( &$this, 'edd_get_payment_memo' ) );
 			} );
 		}
 
@@ -59,11 +59,7 @@ class EDD {
 
 	// show the custom fields in the "View Order Details" popup
 	public function edd_purchase_details( $payment_id ) {
-		// retrieve payment meta array and unserialize it
-		$payment_meta = maybe_unserialize( get_post_meta( $payment_id, '_edd_payment_meta', true ) );
-
-		// add your fields here
-		$memo = ! empty( $payment_meta['memo'] ) ? $payment_meta['memo'] : 'none';
+		$memo = $this->edd_get_payment_memo( $payment_id );
 
 		?>
 		<div class="column-container">
@@ -75,11 +71,7 @@ class EDD {
 	}
 
 	public function edd_sale_notification( $email_body, $payment_id, $payment_data ) {
-		// retrieve payment meta array and unserialize it
-		$payment_meta = maybe_unserialize( get_post_meta( $payment_id, '_edd_payment_meta', true ) );
-
-		// add your fields here
-		$memo = ! empty( $payment_meta['memo'] ) ? $payment_meta['memo'] : 'none';
+		$memo = $this->edd_get_payment_memo( $payment_id );
 
 		// append information to email body
 		$email_body .= '<br /><br />' . '<strong>Additional Information</strong>' . '<br />';
@@ -97,10 +89,10 @@ class EDD {
 	/**
 	 * The {memo} email tag
 	 */
-	public function edd_email_tag_memo( $payment_id ) {
-		$payment_data = edd_get_payment_meta( $payment_id );
+	public function edd_get_payment_memo( $payment_id ) {
+		$payment_meta = edd_get_payment_meta( $payment_id );
 
-		return $payment_data['memo'];
+		return ! empty( $payment_meta['memo'] ) ? $payment_meta['memo'] : 'none';
 	}
 
 	/**

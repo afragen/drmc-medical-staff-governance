@@ -1,3 +1,6 @@
+#### 2.0.3
+* refactor small bits
+
 #### 2.0.2
 * fixed Autoloader
 * fixed display of EDD memo field everywhere
