@@ -1,3 +1,7 @@
+#### 2.0.2
+* fixed Autoloader
+* fixed display of EDD memo field everywhere
+
 #### 2.0.1
 * fixed EDD adding memo field to email receipt
 

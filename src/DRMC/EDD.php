@@ -9,13 +9,13 @@ class EDD {
 		add_filter( 'edd_downloads_query', array( &$this, 'edd_downloads_query' ), 10, 2 );
 		add_action( 'edd_purchase_form_user_info', array( &$this, 'edd_custom_checkout_fields' ) );
 		add_filter( 'edd_payment_meta', array( &$this, 'edd_store_custom_fields' ), 10, 1 );
-		add_action( 'edd_payment_personal_details_list', array( &$this, 'edd_purchase_details' ), 10, 2 );
+		add_action( 'edd_payment_view_details', array( &$this, 'edd_purchase_details' ), 10, 1 );
 		add_filter( 'edd_sale_notification', array( &$this, 'edd_sale_notification' ), 10, 3 );
 		add_filter( 'edd_download_supports', array( &$this, 'edd_add_author_support' ), 10, 1 );
 		add_filter( 'edd_purchase_form_required_fields', array( &$this, 'edd_required_checkout_fields' ), 10, 1 );
 		add_filter( 'edd_email_preview_template_tags', array( &$this, 'edd_email_preview_template_tags' ), 10, 1 );
 
-		add_action( 'init', function () {
+		add_action( 'init', function() {
 			remove_action( 'eddc_insert_commission', 'eddc_email_alert', 10 );
 		} );
 
@@ -58,8 +58,13 @@ class EDD {
 	}
 
 	// show the custom fields in the "View Order Details" popup
-	public function edd_purchase_details( $payment_meta, $user_info ) {
-		$memo = isset( $payment_meta['memo'] ) ? $payment_meta['memo'] : 'none';
+	public function edd_purchase_details( $payment_id ) {
+		// retrieve payment meta array and unserialize it
+		$payment_meta = maybe_unserialize( get_post_meta( $payment_id, '_edd_payment_meta', true ) );
+
+		// add your fields here
+		$memo = ! empty( $payment_meta['memo'] ) ? $payment_meta['memo'] : 'none';
+
 		?>
 		<div class="column-container">
 			<div class="column">
@@ -74,7 +79,7 @@ class EDD {
 		$payment_meta = maybe_unserialize( get_post_meta( $payment_id, '_edd_payment_meta', true ) );
 
 		// add your fields here
-		$memo = $payment_meta['memo'];
+		$memo = ! empty( $payment_meta['memo'] ) ? $payment_meta['memo'] : 'none';
 
 		// append information to email body
 		$email_body .= '<br /><br />' . '<strong>Additional Information</strong>' . '<br />';
