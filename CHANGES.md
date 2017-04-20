@@ -1,3 +1,6 @@
+#### 2.0.1
+* fixed EDD adding memo field to email receipt
+
 #### 2.0.0
 * added class for Easy Digital Downloads customizations
 * bring up to WP Coding Guidelines
