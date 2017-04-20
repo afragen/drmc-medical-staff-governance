@@ -23,7 +23,9 @@ class EDD {
 		 * Add a {memo} tag for use in either the purchase receipt email or admin notification emails
 		 */
 		if ( function_exists( 'edd_add_email_tag' ) ) {
-			edd_add_email_tag( 'memo', 'Purchase memo', array( &$this, 'edd_email_tag_memo' ) );
+			add_action( 'edd_add_email_tags', function() {
+				edd_add_email_tag( 'memo', 'Purchase memo', array( &$this, 'edd_email_tag_memo' ) );
+			} );
 		}
 
 	}

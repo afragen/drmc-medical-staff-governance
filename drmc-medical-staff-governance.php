@@ -1,17 +1,17 @@
 <?php
-/*
-Plugin Name:       DRMC Medical Staff Governance
-Plugin URI:        https://github.com/afragen/drmc-medical-staff-governance
-Description:       This plugin adds registration, custom user meta and other things to the DRMC Medical Staff website for web-based governance.
-Version:           2.0.0
-Author:            Andy Fragen
-License:           GNU General Public License v2
-License URI:       http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
-GitHub Plugin URI: https://github.com/afragen/drmc-medical-staff-governance
-GitHub Branch:     master
-Requires WP:       3.8
-Requires PHP:      5.3
-*/
+/**
+ * Plugin Name:       DRMC Medical Staff Governance
+ * Plugin URI:        https://github.com/afragen/drmc-medical-staff-governance
+ * Description:       This plugin adds registration, custom user meta and other things to the DRMC Medical Staff website for web-based governance.
+ * Version:           2.0.1
+ * Author:            Andy Fragen
+ * License:           GNU General Public License v2
+ * License URI:       http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ * GitHub Plugin URI: https://github.com/afragen/drmc-medical-staff-governance
+ * GitHub Branch:     master
+ * Requires WP:       3.8
+ * Requires PHP:      5.3
+ */
 
 // Plugin namespace root
 $root = array( 'Fragen\DRMC' => __DIR__ . '/src/DRMC' );
@@ -20,8 +20,8 @@ $root = array( 'Fragen\DRMC' => __DIR__ . '/src/DRMC' );
 $extra_classes = array();
 
 // Load Autoloader
-require_once( __DIR__ . '/src/DRMC/Autoloader.php' );
-$class_loader = 'Fragen\\DRMC\\Autoloader';
+require_once( __DIR__ . '/src/Autoloader.php' );
+$class_loader = 'Fragen\\Autoloader';
 new $class_loader( $root, $extra_classes );
 
 // Launch
