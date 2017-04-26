@@ -100,11 +100,9 @@ class EDD {
 	 * Add more required fields here if you need to
 	 */
 	public function edd_required_checkout_fields( $required_fields ) {
-		$required_fields = array(
-			'drmc_memo' => array(
-				'error_id'      => 'invalid_memo',
-				'error_message' => 'Please enter a purchase memo',
-			),
+		$required_fields['drmc_memo'] = array(
+			'error_id'      => 'invalid_memo',
+			'error_message' => 'Please enter a purchase memo',
 		);
 
 		return $required_fields;

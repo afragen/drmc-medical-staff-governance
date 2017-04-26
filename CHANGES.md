@@ -1,3 +1,6 @@
+#### 2.0.4
+* fix $required_fields
+
 #### 2.0.3
 * refactor small bits
 
