@@ -1,3 +1,6 @@
+#### 2.0.5
+* fix addition of EDD memo field
+
 #### 2.0.4
 * fix $required_fields
 
