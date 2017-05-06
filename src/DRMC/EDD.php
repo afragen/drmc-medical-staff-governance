@@ -14,20 +14,11 @@ class EDD {
 		add_filter( 'edd_download_supports', array( &$this, 'edd_add_author_support' ), 10, 1 );
 		add_filter( 'edd_purchase_form_required_fields', array( &$this, 'edd_required_checkout_fields' ), 10, 1 );
 		add_filter( 'edd_email_preview_template_tags', array( &$this, 'edd_email_preview_template_tags' ), 10, 1 );
+		add_filter( 'edd_email_tags', array( &$this, 'edd_add_payment_memo' ), 10, 1 );
 
 		add_action( 'init', function() {
 			remove_action( 'eddc_insert_commission', 'eddc_email_alert', 10 );
 		} );
-
-		/**
-		 * Add a {memo} tag for use in either the purchase receipt email or admin notification emails
-		 */
-		if ( function_exists( 'edd_add_email_tag' ) ) {
-			add_action( 'edd_add_email_tags', function() {
-				edd_add_email_tag( 'memo', 'Purchase memo', array( &$this, 'edd_get_payment_memo' ) );
-			} );
-		}
-
 	}
 
 	public function edd_downloads_query( $query, $atts ) {
@@ -93,6 +84,19 @@ class EDD {
 		$payment_meta = edd_get_payment_meta( $payment_id );
 
 		return ! empty( $payment_meta['memo'] ) ? $payment_meta['memo'] : 'none';
+	}
+
+	/**
+	 * Add a {memo} tag for use in either the purchase receipt email or admin notification emails
+	 */
+	public function edd_add_payment_memo( $email_tags ) {
+		$email_tags[] = array(
+			'tag'         => 'memo',
+			'description' => __( 'Payment memo' ),
+			'function'    => 'edd_get_payment_memo',
+		);
+
+		return $email_tags;
 	}
 
 	/**
