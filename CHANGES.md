@@ -1,4 +1,4 @@
-#### 2.0.5
+#### 2.0.6
 * fix addition of EDD memo field
 
 #### 2.0.4
